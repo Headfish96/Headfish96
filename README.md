@@ -16,3 +16,7 @@ Here are some ideas to get you started:
 -->
 
 ### https://img.shields.io/github/followers/headfish96?style=social
+
+<img src="https://img.shields.io/github/followers/AlpoxDev?style=social">
+
+![](https://img.shields.io/github/followers/AlpoxDev?style=social)
