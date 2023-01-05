@@ -16,6 +16,4 @@ Here are some ideas to get you started:
 -->
 
 
-<img src="https://img.shields.io/github/followers/headfish96?style=social">
-
 ![](https://img.shields.io/github/followers/headfish96?style=social)
