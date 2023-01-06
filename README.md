@@ -26,8 +26,7 @@
 
 ---
 
-## 📭 [E-mail](trappist96@gmail.com)   📝 [Notion](https://www.notion.so/ff65bc729e7147869e8a6d0635fcdb00)   📝 [Blog](https://coder-angrybird.tistory.com)
-## 📝 [Blog](https://coder-angrybird.tistory.com)
+## 📭 [E-mail](trappist96@gmail.com) / 📝 [Notion](https://www.notion.so/ff65bc729e7147869e8a6d0635fcdb00) / 📝 [Blog](https://coder-angrybird.tistory.com)
 
 ---
 
@@ -36,8 +35,5 @@
 ---
 
 - 🔤 Toeic Speaking Lv.6 (2021.04)
-- 🤿 프리다이빙 - 프리다이버
-- 🚘 운전면허 2종 보통
-- 🏍 운전면허 2종 소형
-- 🥊 세계경찰무도연맹 복싱 1단
-- 🥋 태권도 3단
+- 🔤 Opic Lv.IM2 (2022.10)
+- 📑 AICE- Basic (2022.11)
