@@ -62,7 +62,7 @@
 
 📞  010-6422-7410
 
-📝 Notion: https://www.notion.so/ff65bc729e7147869e8a6d0635fcdb00
+📝 .[Notion](https://www.notion.so/ff65bc729e7147869e8a6d0635fcdb00)
 
 ---
 
