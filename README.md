@@ -24,7 +24,6 @@
 ### 📭 E-mail: trappist96@gmail.com
 ### 📝 [Notion](https://www.notion.so/ff65bc729e7147869e8a6d0635fcdb00) / 📝 [Blog](https://coder-angrybird.tistory.com)
 
----
 
 ## 📑 Certificate
 
