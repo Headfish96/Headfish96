@@ -1,5 +1,3 @@
-# 안녕하세요, 최하영입니다! 👋
-
 > ❗수정중인 포트폴리오입니다❗
 > 
 
@@ -88,8 +86,67 @@ Git을 활용한 소스코드 버전 관리 및 협업을 할 수 있습니다. 
 - 🥊 세계경찰무도연맹 복싱 1단
 - 🥋 태권도 3단
 
-[🛠 Projects 프로젝트](https://www.notion.so/39cfe2af8c92429a927abbbeaf80eaab)
+[🛠 Projects 프로젝트](https://www.notion.so/3c57bd0f0cc34fa8be4bd398723305ac)
 
-[🛠 Activities 대외활동](https://www.notion.so/f54c7d23b8654314aedee901228ce1ef)
+[🛠 Activities 대외활동](https://www.notion.so/d89ed55b93b9449aaf6f3a8e6b62a960)
 
 **내가 무엇을 해야할지 항상 고민하는 개발자**
+
+### Hi there 👋
+
+<!--
+
+**Headfish96/Headfish96**
+
+is a ✨
+
+*special*
+
+✨ repository because its
+
+```
+README.md
+```
+
+(this file) appears on your GitHub profile.
+
+Here are some ideas to get you started:
+
+- 🔭 I’m currently working on ...
+- 🌱 I’m currently learning ...
+- 👯 I’m looking to collaborate on ...
+- 🤔 I’m looking for help with ...
+- 💬 Ask me about ...
+- 📫 How to reach me: ...
+- 😄 Pronouns: ...
+- ⚡ Fun fact: ...
+-->
+
+[https://img.shields.io/github/followers/headfish96?style=social](https://img.shields.io/github/followers/headfish96?style=social)
+
+<!-- 마크다운 문법으로 뱃지 가져옴 html -->
+
+![https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FHeadfish96%2Fhit-counter&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FHeadfish96%2Fhit-counter&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)
+
+<img src="
+
+[https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white](https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white)
+
+"> <!-- Git 배지 -->
+<img src="
+
+[https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)
+
+"> <!-- GitHub 배지 -->
+
+<img src="
+
+[https://img.shields.io/badge/AWSEC2-FF9900?style=for-the-badge&logo=Amazon](https://img.shields.io/badge/AWSEC2-FF9900?style=for-the-badge&logo=Amazon)
+
+EC2&logoColor=white"> <!-- AWS EC2 배지 -->
+
+<img src="
+
+[https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white](https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white)
+
+"> <!-- JAVA배지 -->
