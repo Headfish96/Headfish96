@@ -54,23 +54,6 @@
   <br>
 </div>
 
-### 👨‍💻 Personal Info.
-
----
-
-👨‍💻 최 하 영 (HaYoung Choi)
-
-📅 1996년 12월 16일
-
-### 👨🏻‍🎓**Education**
-
----
-
-👨‍🎓  가천대학교 학사 졸업
-
-- 2016.03 ~ 2020.02
-- 컴퓨터 공학과 (3.35 / 4.5)
-
 ### 💡Contact
 
 ---
@@ -79,30 +62,13 @@
 
 📞  010-6422-7410
 
-### **🪖Military service**
+📝 Notion: https://www.notion.so/ff65bc729e7147869e8a6d0635fcdb00
 
 ---
 
-👨‍✈️ ROTC(학군) 58기(2018.12 ~ 2020.02)
-
-- 예도단장
-
-🪖  육군 중위 만기제대(2020.03 ~ 2022.06)
-
-- 체계관리 소대장
-- 인사과장
-
-## 📝 Blog
+## 📝 Blog / [앵그리버드의 코딩](https://coder-angrybird.tistory.com)
 
 ---
-
-[앵그리버드의 코딩](https://coder-angrybird.tistory.com)
-
-## 🗃 Github
-
----
-
-[Headfish96 - Overview](https://github.com/Headfish96)
 
 ## 📑 Certificate
 
@@ -114,10 +80,3 @@
 - 🏍 운전면허 2종 소형
 - 🥊 세계경찰무도연맹 복싱 1단
 - 🥋 태권도 3단
-
-[🛠 Projects 프로젝트](https://www.notion.so/3c57bd0f0cc34fa8be4bd398723305ac)
-
-[🛠 Activities 대외활동](https://www.notion.so/d89ed55b93b9449aaf6f3a8e6b62a960)
-
-**내가 무엇을 해야할지 항상 고민하는 개발자**
-
