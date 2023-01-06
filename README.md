@@ -26,15 +26,11 @@
 
 ---
 
-📭  trappist96@gmail.com 
+## 📭 [E-mail](trappist96@gmail.com)
 
-📞  010-6422-7410
+## 📝 [Notion](https://www.notion.so/ff65bc729e7147869e8a6d0635fcdb00)
 
-📝 .[Notion](https://www.notion.so/ff65bc729e7147869e8a6d0635fcdb00)
-
----
-
-## 📝 Blog / [앵그리버드의 코딩](https://coder-angrybird.tistory.com)
+## 📝 [Blog](https://coder-angrybird.tistory.com)
 
 ---
 
