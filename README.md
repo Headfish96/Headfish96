@@ -19,7 +19,8 @@
   <br>
 </div>
 
-
+---
+ 
 ![Headfish96's GitHub stats](https://github-readme-stats.vercel.app/api?username=Headfish96&show_icons=true&theme=tokyonight)
 [![Solved.ac Profile](http://mazassumnida.wtf/api/generate_badge?boj=trappist96)](https://solved.ac/trappist96)
 
