@@ -1,3 +1,5 @@
+<img src="https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=HaYoung%20Git&fontSize=90" />
+
 <div align="center">
 
   ## 👨‍💻 Computer Engineer, Developer
