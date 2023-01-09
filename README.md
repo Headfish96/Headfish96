@@ -26,11 +26,11 @@
 ---
 <div align="center">
   
-![Headfish96's GitHub stats](https://github-readme-stats.vercel.app/api?username=Headfish96&show_icons=true&theme=tokyonight)
+![Headfish96's GitHub stats](https://github-readme-stats.vercel.app/api?username=Headfish96&show_icons=true&theme=tokyonight/)![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Headfish96&layout=compact&theme=tokyonight)
 
 [![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=trappist96)](https://solved.ac/trappist96/)
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Headfish96&layout=compact&theme=tokyonight)
+
   
 </div>
 
