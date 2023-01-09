@@ -1,8 +1,10 @@
+<div align="center">
 ## 👨‍💻 Computer Engineer, Developer
 
 - **도전을 즐기는 개발자**
 - **세심하고 꼼꼼하게 쌓아나가는 개발자**
 - **내가 무엇을 해야할지 항상 고민하는 개발자**
+</div>
 
 <div align=center><h1>📚 STACKS</h1></div>
 
@@ -21,11 +23,13 @@
 </div>
 
 ---
- 
+<div align="center">
 ![Headfish96's GitHub stats](https://github-readme-stats.vercel.app/api?username=Headfish96&show_icons=true&theme=tokyonight)
 
 [![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=trappist96)](https://solved.ac/trappist96/)
 
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Headfish96&layout=compact&theme=tokyonight)
+</div>
 
 ## 💡Contact
 
