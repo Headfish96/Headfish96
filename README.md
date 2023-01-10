@@ -47,5 +47,5 @@
 ## 📑 Certificate
 
 - 🔤 Toeic Speaking Lv.6 (2021.04)
-- 🔤 Opic Lv.IM2 (2022.10)
+- 🔤 Opic Lv.IM1 (2022.10)
 - 📑 AICE- Basic (2022.11)
