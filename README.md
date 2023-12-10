@@ -34,19 +34,8 @@ shields.io 참고: https://shields.io/
 icon 참고: https://simpleicons.org/?q=go
  -->
 
-### 배움에 두려움이 없이 항상 정진하는 개발자입니다. 🤓
 
-> 
-> **Pytorch**와 **Transformers**를 배웠으며,
->
-> **DevOps**와 **MLOps**에 관심이 많습니다.
-> 
-> 특히 데이터와 모델을 서빙하여 개발자와 사용자를 편리하게 해 줄
-> 
-> **REST API** 구현과 **K8s** 등 인프라 기술에 관심이 많습니다.
-
-
-![Yeoncheol Kang's GitHub stats](https://github-readme-stats.vercel.app/api?username=kyc3492&count_private=true&show_icons=true&theme=github_dark)
+![Headfish96's GitHub stats](https://github-readme-stats.vercel.app/api?username=Headfish96&show_icons=true&theme=github_dark)
 
 ---
 
@@ -90,7 +79,7 @@ icon 참고: https://simpleicons.org/?q=go
 ---
 <div align="center">
   
-![Headfish96's GitHub stats](https://github-readme-stats.vercel.app/api?username=Headfish96&show_icons=true&theme=tokyonight)
+
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Headfish96&layout=compact&theme=tokyonight)
 [![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=trappist96)](https://solved.ac/trappist96/)
   
