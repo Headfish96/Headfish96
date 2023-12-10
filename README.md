@@ -91,7 +91,7 @@ icon 참고: https://simpleicons.org/?q=go
 |TastyTrip|2명|2023.05.17 ~ 2023.05.26|공공데이터를 통한 여행 맛집 웹 서비스|기획 & 발표 / FullStack|
 |[Code-Hive](https://github.com/Headfish96/CodeHive)|6명|2023.07.10 ~ 2023.08.18|실시간, 양방향 알고리즘 스터디 웹 플랫폼|기획 & 발표 / BE|
 |[Billage](https://github.com/Headfish96/Billage)|6명|2023.08.28 ~ 2023.10.06|개인간 금전 거래 전자차용증 모바일 서비스|기획 & 발표 / BE / INFRA|
-|[PiYou](https://github.com/Headfish96/PiYou)|6명|2023.10.10 ~ 2023.11.17|OnDevice-AI를 활용한 아동 생활습관 개선 앱|기획 & 발표 / BE / AI |
+|[PiYou](https://github.com/Headfish96/PiYou)|6명|2023.10.10 ~ 2023.11.17|OnDevice-AI를 활용한 아동 생활습관 개선 앱|기획 & 발표 / BE / AI|
 
 </div>
 
@@ -115,7 +115,8 @@ icon 참고: https://simpleicons.org/?q=go
 - 물품 구매 예산을 관례대로 계속 처리해 약 30%의 낭비되던 예산을 없애고 장병들의 만족도를 올렸습니다.
 - 코로나 관리 및 백신접종 업무를 담당하며, 부대 내 코로나 재감염률을 낮추고, 백신 접종률 99%를 달성하였습니다.
 
-<div align=center> 
+<div align=center>
+ 
 |프로젝트 명|참여 인원|역할|성과|
 |:--:|:--:|:--:|:--:|
 |ATCIS 2차 체계 서버 증량|군단전체|최초 장애 발견 및 군단 내 교체 담당|훈련간 용량 부족 및 장애 최초 식별로 영관급 회의 브리핑 / ATCIS 2차 체계 사용 군단 전 부대의 저장장치 증량 및 DB 정책 변경|
