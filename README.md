@@ -121,7 +121,7 @@ icon 참고: https://simpleicons.org/?q=go
 
 |Name|Institution|Date|
 |:--:|:--:|:--:|
-|🔤 Opic IM1|ACTFL|2022.12.12|
+|🔤 Opic IM1|ACTFL|2022.12.12|
 |💻 AICE Basic|KT, 한국경제신문|2022.11.12|
 |🚘 2종 보통|운전면허|2021.06|
 |🏍 2종 소형|운전면허|2022.09|
