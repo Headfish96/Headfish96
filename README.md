@@ -39,28 +39,6 @@ icon 참고: https://simpleicons.org/?q=go
 
 ---
 
-### 기술 스택 😄
-
-#### 언어
-<img src="https://img.shields.io/badge/java-007396?style=flat&logo=python&logoColor=white"/>
-<img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white"/>
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?&style=flat&logo=JavaScript&logoColor=white"/>
-
-#### 프레임워크
-
-<img src="https://img.shields.io/badge/PyTorch-EE4C2C?&style=flat&logo=PyTorch&logoColor=white"/>  <img src="https://img.shields.io/badge/PyTorch Lightning-792EE5?&style=flat&logo=PyTorch Lightning&logoColor=white"/>  <img src="https://img.shields.io/badge/Node.js-339933?&style=flat&logo=Node.js&logoColor=white"/>  <img src="https://img.shields.io/badge/Flask-000000?&style=flat&logo=Flask&logoColor=white"/>  <img src="https://img.shields.io/badge/React-61DAFB?&style=flat&logo=React&logoColor=white"/>
-
-#### 기타
-
-<img src="https://img.shields.io/badge/MLflow-0194E2?style=flat&logo=MLflow&logoColor=white"/>  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=Streamlit&logoColor=white"/>  <img src="https://img.shields.io/badge/NGINX-009639?style=flat&logo=NGINX&logoColor=white"/>  <img src="https://img.shields.io/badge/Linux-FCC624?style=flat&logo=Linux&logoColor=white"/>  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white"/>  <img src="https://img.shields.io/badge/AWS-232F3E?style=flat&logo=Amazon%20AWS&logoColor=white"/>
-
----
-
-### 더 알고 싶으시다면? 🤗
-
-#### [<img src="https://img.shields.io/badge/Tistory-000000?style=flat&logo=Tistory&logoColor=white"/> 티스토리 블로그](https://coder-angrybird.tistory.com)
-#### 📭 E-mail: trappist96@gmail.com
-
 ## <div style="text-align: left"> 📚 Skills </div> 
 
 ### <div style="text-align: left"> Backend </div> 
@@ -69,7 +47,6 @@ icon 참고: https://simpleicons.org/?q=go
   <img src="https://img.shields.io/badge/Python-000000?style=flat-square&logo=Python&logoColor=3776AB"/>
   <img src="https://img.shields.io/badge/Spring-000000?style=flat-square&logo=Spring&logoColor=6DB33F"/>
   <img src="https://img.shields.io/badge/Spring Boot-000000?style=flat-square&logo=Spring Boot&logoColor=6DB33F"/>
-  <img src="https://img.shields.io/badge/Spring Security-000000?style=flat-square&logo=Spring Security&logoColor=6DB33F"/>
   <img src="https://img.shields.io/badge/JPA-000000?style=flat-square&logo=Hibernate&logoColor=59666C"/>
   <img src="https://img.shields.io/badge/MyBatis-000000?style=flat-square&logo=MyBatis&logoColor=59666C"/>
 </p>
@@ -79,26 +56,19 @@ icon 참고: https://simpleicons.org/?q=go
 <p style="text-align: left">
   <img src="https://img.shields.io/badge/HTML5-000000?style=flat-square&logo=HTML5&logoColor=E34F26"/>
   <img src="https://img.shields.io/badge/CSS3-000000?style=flat-square&logo=CSS3&logoColor=1572B6"/>
-  <img src="https://img.shields.io/badge/JavaScript-000000?style=flat-square&logo=JavaScript&logoColor=F7DF1E"/>
-  <img src="https://img.shields.io/badge/React-000000?style=flat-square&logo=React&logoColor=61DAFB"/>
-  <img src="https://img.shields.io/badge/Recoil-000000?style=flat-square&logo=Recoil&logoColor=3578E5"/>
   <img src="https://img.shields.io/badge/Vue.js (2)-000000?style=flat-square&logo=Vue.js&logoColor=4FC08D"/>
 </p>
 
 ### <div style="text-align: left"> Infra </div>
 <p style="text-align: left">
   <img src="https://img.shields.io/badge/Docker-000000?style=flat-square&logo=Docker&logoColor=2496ED"/>
-  <img src="https://img.shields.io/badge/Jenkins-000000?style=flat-square&logo=Jenkins&logoColor=D24939"/>
-  <img src="https://img.shields.io/badge/NGINX-000000?style=flat-square&logo=NGINX&logoColor=6DB33F"/>
   <img src="https://img.shields.io/badge/AWS EC2-000000?style=flat-square&logo=Amazon EC2&logoColor=FF9900"/>
-  <img src="https://img.shields.io/badge/AWS RDS-000000?style=flat-square&logo=Amazon RDS&logoColor=527FFF"/>
   <img src="https://img.shields.io/badge/AWS S3-000000?style=flat-square&logo=Amazon S3&logoColor=569A31"/>
 </p>
 
 ### <div style="text-align: left"> Database </div>
 <p style="text-align: left">
   <img src="https://img.shields.io/badge/MySQL-000000?style=flat-square&logo=MySQL&logoColor=007396"/>
-  <img src="https://img.shields.io/badge/Redis-000000?style=flat-square&logo=Redis&logoColor=DC382D"/>
 </p>
   
 ### <div style="text-align: left"> Tools </div>   
@@ -110,8 +80,6 @@ icon 참고: https://simpleicons.org/?q=go
   <img src="https://img.shields.io/badge/Jira-000000?style=flat-square&logo=Jira&logoColor=0052CC"/>
   <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=ffffff"/>
   <img src="https://img.shields.io/badge/Figma-000000?style=flat-square&logo=Figma&logoColor=F24E1E"/>
-  
-
 </p>
 
 ## <div style="text-align: left"> 🗃 Projects </div> 
@@ -120,25 +88,12 @@ icon 참고: https://simpleicons.org/?q=go
   
 |프로젝트 명|참여 인원|기간|소개|역할|
 |:--:|:--:|:--:|:--:|:--:|
-|EnjoyTrip|2명|2023.05.17 ~ 2023.05.26|공공데이터를 통한 여행 도움 웹사이트|BE / FE|
-|[이몽저몽](https://github.com/meoldae/IMongJeoMong-backend)|4명|2023.06.10 ~ 2023.07.24|공공데이터를 활용한 지역관광 게이미피케이션 앱|BE|
-|[PEEKPICK](https://github.com/meoldae/PEEKPICK/)|6명|2023.07.10 ~ 2023.08.18|위치 기반 익명 취향공유 플랫폼|BE / INFRA|
-|[하루연구소](https://github.com/meoldae/DailyLab)|6명|2023.08.28 ~ 2023.10.06|개인 맞춤형 할일 추천, 보고서 작성 서비스|BE / INFRA|
-|[딩동](https://github.com/meoldae/Dingdong)|6명|2023.10.10 ~ 2023.11.17|인터랙티브 웹 서비스|BE / FE / INFRA|
+|TastyTrip|2명|2023.05.17 ~ 2023.05.26|공공데이터를 통한 여행 맛집 웹 서비스|기획 & 발표 / FullStack|
+|[Code-Hive](https://github.com/meoldae/PEEKPICK/)|6명|2023.07.10 ~ 2023.08.18|실시간, 양방향 알고리즘 스터디 웹 플랫폼|기획 & 발표 / BE|
+|[Billage](https://github.com/meoldae/DailyLab)|6명|2023.08.28 ~ 2023.10.06|개인간 금전 거래 전자차용증 모바일 서비스|기획 & 발표 / BE / INFRA|
+|[PiYou](https://github.com/meoldae/Dingdong)|6명|2023.10.10 ~ 2023.11.17|OnDevice-AI를 활용한 아동 생활습관 개선 앱|기획 & 발표 / BE / AI |
 
 </div>
-
-## <div style="text-align: left">  🏙 Oranization </div> 
-
-<div align=center> 
-  
-|Name|Position|Period|Department|
-|:--:|:--:|:--:|:--:|
-|Chungnam National University|Student|2016.03 ~ 2023.02|Computer Science| 
-|SSAFY|9th|2023.01 ~ Current|Java (Backend) |
-
-</div>
-
   
 ## <div style="text-align: left"> 🎫 Certificate </div> 
 
@@ -189,3 +144,10 @@ icon 참고: https://simpleicons.org/?q=go
 - 🔤 Toeic Speaking Lv.6 (2021.04)
 - 🔤 Opic Lv.IM1 (2022.10)
 - 📑 AICE- Basic (2022.11)
+
+
+
+### 더 알고 싶으시다면? 🤗
+
+#### [<img src="https://img.shields.io/badge/Tistory-000000?style=flat&logo=Tistory&logoColor=white"/> 티스토리 블로그](https://coder-angrybird.tistory.com)
+#### 📭 E-mail: trappist96@gmail.com
