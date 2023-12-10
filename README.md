@@ -36,6 +36,7 @@ icon 참고: https://simpleicons.org/?q=go
 
 
 ![Headfish96's GitHub stats](https://github-readme-stats.vercel.app/api?username=Headfish96&show_icons=true&theme=github_dark)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Headfish96&layout=compact&theme=tokyonight)
 
 ---
 
@@ -80,7 +81,7 @@ icon 참고: https://simpleicons.org/?q=go
 <div align="center">
   
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Headfish96&layout=compact&theme=tokyonight)
+
 [![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=trappist96)](https://solved.ac/trappist96/)
   
 </div>
