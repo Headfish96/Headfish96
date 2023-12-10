@@ -13,7 +13,10 @@
 이후 KT의 인공지능 자격증을 취득하였습니다.</br>
 현재는 삼성 청년 SW 아카데미에서 개발 역량을 향상시키고 있습니다.</br>
 Spring, SpringBoot, JPA, MySQL 등을 활용한 실무 중심의 프로젝트를 진행하였습니다.</br>
-또힌 이 과정에서 프로젝트 경진대회 전국 1등, 프로젝트 우수상 등 성과를 이뤄나가고 있습니다.</br>
+또힌 이 과정에서 프로젝트 경진대회 전국 1등, 프로젝트 우수상 등 성과를 이뤄나가고 있습니다.</br></br>
+
+![Headfish96's GitHub stats](https://github-readme-stats.vercel.app/api?username=Headfish96&show_icons=true&theme=github_dark)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Headfish96&layout=compact&theme=tokyonight)
 
 <!--
 **umi0410/umi0410** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
@@ -34,10 +37,6 @@ shields.io 참고: https://shields.io/
 icon 참고: https://simpleicons.org/?q=go
  -->
 
-
-![Headfish96's GitHub stats](https://github-readme-stats.vercel.app/api?username=Headfish96&show_icons=true&theme=github_dark)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Headfish96&layout=compact&theme=tokyonight)
-
 ---
 
 ### 기술 스택 😄
@@ -57,8 +56,8 @@ icon 참고: https://simpleicons.org/?q=go
 
 ### 더 알고 싶으시다면? 🤗
 
-#### [<img src="https://img.shields.io/badge/Tistory-000000?style=flat&logo=Tistory&logoColor=white"/> 티스토리 블로그](https://ye0ns.tistory.com/)
-#### [<img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white"/> 이력서 (상시 업데이트 중!)](https://eminent-aftermath-b27.notion.site/4f5c6a2084de4f69b7e682fcecc9ffe1)
+#### [<img src="https://img.shields.io/badge/Tistory-000000?style=flat&logo=Tistory&logoColor=white"/> 티스토리 블로그](https://coder-angrybird.tistory.com)
+#### 📭 E-mail: trappist96@gmail.com
 
 
 <h1>📚 STACKS</h1></div>
@@ -89,7 +88,7 @@ icon 참고: https://simpleicons.org/?q=go
 ## 💡Contact
 
 ### 📭 E-mail: trappist96@gmail.com
-### 📝 [Blog](https://coder-angrybird.tistory.com)
+### 📝 [Blog]()
 
 ---
 
