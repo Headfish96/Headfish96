@@ -42,7 +42,9 @@ icon 참고: https://simpleicons.org/?q=go
 ### 기술 스택 😄
 
 #### 언어
-<img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white"/>  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?&style=flat&logo=JavaScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/java-007396?style=flat&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?&style=flat&logo=JavaScript&logoColor=white"/>
 
 #### 프레임워크
 
@@ -75,20 +77,6 @@ icon 참고: https://simpleicons.org/?q=go
   <img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
   <br>
 </div>
-
----
-<div align="center">
-  
-
-
-[![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=trappist96)](https://solved.ac/trappist96/)
-  
-</div>
-
-## 💡Contact
-
-### 📭 E-mail: trappist96@gmail.com
-### 📝 [Blog]()
 
 ---
 
