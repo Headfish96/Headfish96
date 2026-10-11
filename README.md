@@ -1,154 +1,77 @@
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FHeadfish96%2Fhit-counter&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://github.com/Headfish96)
-<image src="https://img.shields.io/github/followers/Headfish96?style=social">
+# 최하영 | Infrastructure & Backend Engineer
 
-<img src="https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=HaYoung%20Git&fontSize=90" />
+필요한 기술이 낯설어도 배우고 직접 적용하며, 서버 운영과 소프트웨어 개발을 함께 경험해 왔습니다.
+프로그램이 실행되는 환경부터 실제 서비스의 동작까지 이해하는 엔지니어로 성장하고 있습니다.
 
-## 👩‍💻 빠르게 배우고 꾸준히 발전하는 개발자입니다. 🤓
-### 빠른 업무 습득력
-통신장교로 서버관리 업무를 맡으며 사수도, 인수인계서도 없는 상황에서</br>
-빠르게 업무를 습득하였고, 이어진 훈련에서 성과를 달성한 경험이 있습니다.
+## 대표 프로젝트
 
-### 꾸준한 발전
-전역 후 네이버 커넥트의 파이썬과 데이터사이언스 온라인 코칭 스터디에 참여하였습니다.</br>
-이후 KT의 인공지능 자격증을 취득하였습니다.</br>
-현재는 삼성 청년 SW 아카데미에서 개발 역량을 향상시키고 있습니다.</br>
-Spring, SpringBoot, JPA, MySQL 등을 활용한 실무 중심의 프로젝트를 진행하였습니다.</br>
-또힌 이 과정에서 프로젝트 경진대회 전국 1등, 프로젝트 우수상 등 성과를 이뤄나가고 있습니다.</br></br>
+| 프로젝트 | 해결한 문제와 경험 | 자료 |
+| --- | --- | --- |
+| Kubernetes 모델 세트 전환 연구 | 세트 전환 아키텍처 설계와 순차·병렬 배포 프로토타입 비교. 기존 코드와 결과, 계측의 한계를 함께 공개 | [코드·원본 결과](https://github.com/Headfish96/tsdo-simulation) |
+| 퀀트 백테스트 연구 | 리밸런싱 전략, 신호·체결 시점, 비용, 현금흐름을 고려한 Python 기반 전략 비교 연구 | [연구 소개](projects/quant-research.md) |
+| Billage | 금융 API 제약을 은행·오픈뱅킹·마이데이터 모의 구현으로 해결한 금전거래 서비스 | [저장소](https://github.com/Headfish96/Billage) |
+| PiYou | OnDevice-AI 기반 아동 생활습관 개선 앱. SSAFY 프로젝트 경진대회 전국 1등 | [서버 저장소](https://github.com/Headfish96/PiYou) |
+| CodeHive | 실시간 양방향 알고리즘 스터디 웹 플랫폼. SSAFY 공통 프로젝트 우수상 | [저장소](https://github.com/Headfish96/CodeHive) |
+| Flightstick Tester | Python 기반 조이스틱 입력 테스트 도구 | [저장소](https://github.com/Headfish96/velocityone-flightstick-tester) |
 
-![Headfish96's GitHub stats](https://github-readme-stats.vercel.app/api?username=Headfish96&show_icons=true&theme=github_dark)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Headfish96&layout=compact&theme=tokyonight)
+## Infrastructure & Research
 
-<!--
-**umi0410/umi0410** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+### Kubernetes 모델 세트 전환
 
-Here are some ideas to get you started:
+여러 모델을 개별적으로 다루는 것을 넘어 상황에 맞는 세트로 전환하는 구조를 연구했습니다.
+기존 Python·kubectl 실험과 10회씩의 측정 결과를 아카이브로 정리했습니다.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
-<!-- 
-shields.io 참고: https://shields.io/
-icon 참고: https://simpleicons.org/?q=go
- -->
+- **논문:** 전술 임무 단계 이종 AI 모델 세트의 오케스트레이션을 위한 쿠버네티스 커스텀 컨트롤러 설계
+- **공동저자:** 최하영, 박범식, 백승호
+- **발표:** 한국통신학회 2026년 하계학술대회
+- [논문 원문](https://d2j16w31g89z0j.cloudfront.net/site/2026s/abs/0721-ZUPVY.pdf)
 
----
+공개 코드는 제안 아키텍처 전체의 커스텀 컨트롤러가 아닌 배포 실험 프로토타입입니다.
+실제 AI 모델·KEDA·Argo의 통합 성능을 검증한 것으로 표현하지 않으며, 재집계 방법과 구현의 한계는 저장소에 구분해 기록했습니다.
 
-## <div style="text-align: left"> 📚 Skills </div> 
+### 서버 구축과 운영
 
-### <div style="text-align: left"> Backend </div> 
-<p style="text-align: left">
-  <img src="https://img.shields.io/badge/Java-000000?style=flat-square&logo=java&logoColor=744e3b"/>
-  <img src="https://img.shields.io/badge/Python-000000?style=flat-square&logo=Python&logoColor=3776AB"/>
-  <img src="https://img.shields.io/badge/Spring-000000?style=flat-square&logo=Spring&logoColor=6DB33F"/>
-  <img src="https://img.shields.io/badge/Spring Boot-000000?style=flat-square&logo=Spring Boot&logoColor=6DB33F"/>
-  <img src="https://img.shields.io/badge/JPA-000000?style=flat-square&logo=Hibernate&logoColor=59666C"/>
-  <img src="https://img.shields.io/badge/MyBatis-000000?style=flat-square&logo=MyBatis&logoColor=59666C"/>
-</p>
+Ubuntu 설치·업데이트와 NVIDIA 드라이버 관리, Kubernetes 클러스터 구성,
+Prometheus·Grafana 모니터링, IPMI 원격 관리 환경을 직접 구성했습니다.
+물리 서버 유지보수 경험에 소프트웨어 개발 경험을 더해, 서버를 사용하는 개발자의 관점도 함께 이해하고 있습니다.
+회사 내부 코드와 비공개 시스템 구성은 공개하지 않습니다.
 
+## Backend & Applied AI
 
-### <div style="text-align: left"> Frontend </div>
-<p style="text-align: left">
-  <img src="https://img.shields.io/badge/HTML5-000000?style=flat-square&logo=HTML5&logoColor=E34F26"/>
-  <img src="https://img.shields.io/badge/CSS3-000000?style=flat-square&logo=CSS3&logoColor=1572B6"/>
-  <img src="https://img.shields.io/badge/Vue.js-000000?style=flat-square&logo=Vue.js&logoColor=4FC08D"/>
-</p>
+### Billage
 
-### <div style="text-align: left"> Infra </div>
-<p style="text-align: left">
-  <img src="https://img.shields.io/badge/Docker-000000?style=flat-square&logo=Docker&logoColor=2496ED"/>
-  <img src="https://img.shields.io/badge/AWS EC2-000000?style=flat-square&logo=Amazon EC2&logoColor=FF9900"/>
-  <img src="https://img.shields.io/badge/AWS S3-000000?style=flat-square&logo=Amazon S3&logoColor=569A31"/>
-</p>
+**개인 담당:** 기획·발표, 백엔드·인프라. 팀 프로젝트.
 
-### <div style="text-align: left"> Database </div>
-<p style="text-align: left">
-  <img src="https://img.shields.io/badge/MySQL-000000?style=flat-square&logo=MySQL&logoColor=007396"/>
-</p>
-  
-### <div style="text-align: left"> Tools </div>   
+차용증 생성부터 송금·상환까지 이어지는 서비스를 개발했습니다.
+외부 금융 API 이용 제약에 대응하여 금융 시스템을 모의 구현하고,
+MSA와 Spring WebClient·WebFlux 기반 통신을 통해 서비스 간 연결을 다뤘습니다.
 
-<p style="text-align: left">
-  <img src="https://img.shields.io/badge/Git-000000?style=flat-square&logo=Git&logoColor=F05032"/>
-  <img src="https://img.shields.io/badge/GitHub-000000?style=flat-square&logo=Github&logoColor=ffffff"/>
-  <img src="https://img.shields.io/badge/GitLab-000000?style=flat-square&logo=Gitlab&logoColor=FC6D26"/>
-  <img src="https://img.shields.io/badge/Jira-000000?style=flat-square&logo=Jira&logoColor=0052CC"/>
-  <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=ffffff"/>
-  <img src="https://img.shields.io/badge/Figma-000000?style=flat-square&logo=Figma&logoColor=F24E1E"/>
-</p>
+### PiYou
 
-## <div style="text-align: left"> 🗃 Projects </div> 
+**개인 담당:** 기획·발표, 백엔드·AI. 팀 프로젝트.
 
-<div align=center> 
-  
-|프로젝트 명|참여 인원|기간|소개|역할|
-|:--:|:--:|:--:|:--:|:--:|
-|TastyTrip|2명|2023.05.17 ~ 2023.05.26|공공데이터를 통한 여행 맛집 웹 서비스|기획 & 발표 / FullStack|
-|[Code-Hive](https://github.com/Headfish96/CodeHive)|6명|2023.07.10 ~ 2023.08.18|실시간, 양방향 알고리즘 스터디 웹 플랫폼|기획 & 발표 / BE|
-|[Billage](https://github.com/Headfish96/Billage)|6명|2023.08.28 ~ 2023.10.06|개인간 금전 거래 전자차용증 모바일 서비스|기획 & 발표 / BE / INFRA|
-|[PiYou](https://github.com/Headfish96/PiYou)|6명|2023.10.10 ~ 2023.11.17|OnDevice-AI를 활용한 아동 생활습관 개선 앱|기획 & 발표 / BE / AI|
+아이의 식습관과 양치습관 개선을 돕기 위해 MediaPipe와 Unity를 적용했습니다.
+Graham Scan 기반 Convex Hull로 손동작 인식을 보완하고,
+사용자 상태 갱신에는 정기 실행과 JDBC 배치 처리를 적용했습니다.
+링크된 포크는 서버 저장소이며 앱·AI 코드 전체를 포함한다는 뜻은 아닙니다.
 
-</div>
+## Experience
 
-## <div style="text-align: left"> 🗃 Experience </div> 
+| 소속 | 경험 |
+| --- | --- |
+| LIG D&A · C4I연구소 | 제어 SW 개발·유지보수, 서버 환경 구축 및 플랫폼 아키텍처 검토 참여 |
+| AWS · Data Center Operations | 물리 서버 장애 상태 확인 및 장비 교체 |
+| 멀티캠퍼스 · SSAFY 실습코치 | 2023.12–2024.05, 프리랜서. 교육생 프로젝트 품질 향상 지원·지도 |
+| 육군 통신장교 | 서버 운영 관리, 장애 대응 조율 및 저장장치 증설·로그 정책 개선 추진 |
 
-<div align=center> 
-  
-|고용형태|회사명|근무기간|부서|직책|
-|:--:|:--:|:--:|:--:|:--:|
-|정규직|대한민국 육군|2020.03.01 ~ 2021.05.31|군단 사령부 정보통신단 운용대대|체계관리소대장|
-|정규직|대한민국 육군|2021.06.01 ~ 2022.06.30|군단 사령부 정보통신단 운용대대|인사과장|
+## 기술 경험
 
-</div>
+- **Infrastructure:** Linux/Ubuntu, Kubernetes, Docker, Prometheus, Grafana, IPMI
+- **Development:** Python, Java, Spring, JPA, MySQL, C#, Unity, MediaPipe
+- **Systems:** VxWorks 기반 제어 소프트웨어 유지보수·시험평가
 
-#### 체계관리소대장 : ATCIS 2차 지상전술통신체계 군단 서버 및 DB 관리(16개월)
-- ATCIS 2차 체계의 서버, DB관리 및 과학화 출입통제 시스템 서버 관리를 하며 PM역할을 담당
-- ATCIS 2차 체계 운용간 저장장치의 용량 부족 문제를 최초 식별 후 보고하였고,</br>이후 군단 전체 ATCIS 2차 체계 저장장치의 증량 프로젝트에 참여하였습니다.
-- 생체정보를 바탕으로 출입을 관리하는 과학화 출입통제 시스템의 서버관리 및 운용 경험이 있습니다.
-#### 인사과장 : 대대 인사, 재정, 교육, 홍보, 복지 및 코로나19 관련 의무업무(12개월)
-- 인사, 재정 등 본연의 업무와 코로나 관련 의무 업무 담당
-- 물품 구매 예산을 관례대로 계속 처리해 약 30%의 낭비되던 예산을 없애고 장병들의 만족도를 올렸습니다.
-- 코로나 관리 및 백신접종 업무를 담당하며, 부대 내 코로나 재감염률을 낮추고, 백신 접종률 99%를 달성하였습니다.
-  
-## <div style="text-align: left"> 🎫 Certificate </div> 
+기술 목록은 실제 사용 경험을 뜻하며, 모든 항목의 숙련도가 동일하다는 의미는 아닙니다.
 
-<div align=center> 
+[기술 블로그](https://coder-angrybird.tistory.com/) · [알고리즘 학습](https://github.com/Headfish96/Algorithm) · [CS 스터디](https://github.com/Headfish96/CS-Study)
 
-|Name|Institution|Date|
-|:--:|:--:|:--:|
-|🔤 Opic IM1|ACTFL|2022.12.12|
-|💻 AICE Basic|KT, 한국경제신문|2022.11.12|
-|🚘 2종 보통|운전면허|2021.06|
-|🏍 2종 소형|운전면허|2022.09|
-|🤿 프리다이빙|AFIA|2022.11|
-|🥊 복싱 1단|세계경찰무도연맹|2022.10|
-|🥋 태권도 3단|국기원|2020.02|
-
-</div>
-
-## <div style="text-align: left"> 🏆 Awards </div> 
-
-<div align=center> 
-
-|Name|Level|Institution|Date|
-|:--:|:--:|:--:|:--:|
-|SSAFY 2학기 공통 프로젝트 경진대회|[공통 프로젝트 우수상](https://github.com/Headfish96/CodeHive)|삼성전자 주식회사|2023.08.18|
-|SSAFY 2학기 자율 프로젝트 경진대회|[자율 프로젝트 전국 1등](https://github.com/Headfish96/PiYou)|삼성전자 주식회사|2023.11.30|
-|중장급(군단장급) 개인 상장|[육군 헌신상]|대한민국 육군|2022.06.30|
-|대령급(연대장급) 개인 표창|[코로나 19 백신접종 유공]|대한민국 육군|2021.08.20|
-|대령급(연대장급) 개인 표창|[단 창설 68주년 기념 유공]|대한민국 육군|2021.05.07|
-|대령급(연대장급) 개인 표창|[근무유공]|대한민국 육군|2020.12.31|
-  
-</div>
-
----
-
-### 더 알고 싶으시다면? 🤗
-
-#### [<img src="https://img.shields.io/badge/Tistory-000000?style=flat&logo=Tistory&logoColor=white"/> 티스토리 블로그](https://coder-angrybird.tistory.com)
-#### 📭 E-mail: trappist96@gmail.com
+팀 프로젝트의 링크는 포크를 포함합니다. 원본 저장소·공동 작업자의 기여와 개인 담당 역할을 구분합니다.
