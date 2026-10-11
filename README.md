@@ -1,4 +1,6 @@
-# 최하영 | Infrastructure & Backend Engineer
+# Defense Software Engineer
+
+Infrastructure · Backend · AI Platforms
 
 필요한 기술이 낯설어도 배우고 직접 적용하며, 서버 운영과 소프트웨어 개발을 함께 경험해 왔습니다.
 프로그램이 실행되는 환경부터 실제 서비스의 동작까지 이해하는 엔지니어로 성장하고 있습니다.
@@ -22,7 +24,6 @@
 기존 Python·kubectl 실험과 10회씩의 측정 결과를 아카이브로 정리했습니다.
 
 - **논문:** 전술 임무 단계 이종 AI 모델 세트의 오케스트레이션을 위한 쿠버네티스 커스텀 컨트롤러 설계
-- **공동저자:** 최하영, 박범식, 백승호
 - **발표:** 한국통신학회 2026년 하계학술대회
 - [논문 원문](https://d2j16w31g89z0j.cloudfront.net/site/2026s/abs/0721-ZUPVY.pdf)
 
