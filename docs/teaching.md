@@ -45,7 +45,7 @@ ChatGPT·Codex와 협업하며 요구사항을 정리하고, 시나리오 편집
 
 ### Billage · API·서비스 연동
 
-![서비스 연결을 단순화한 그림](../assets/billage-flow.svg)
+![Billage의 모의 금융 서비스 구성요소 요약](../assets/billage-flow.svg)
 
 개인 간 금전거래의 차용증 생성과 송금·상환 내역 관리를 연결한 서비스.
 

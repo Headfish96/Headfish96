@@ -14,7 +14,7 @@
 - **성과** · PiYou, SSAFY 9기 자율 프로젝트 전국 1등 / CodeHive, 공통 프로젝트 우수상
 - **AI 활용** · ChatGPT·Codex와 협업해 MDS를 개발 중이며, Claude Code 사용 경험이 있습니다.
 
-**[교육·실습 지원 포트폴리오 →](docs/teaching.md)** &nbsp; · &nbsp; [기술 블로그](https://coder-angrybird.tistory.com/) &nbsp; · &nbsp; [알고리즘 학습](https://github.com/Headfish96/Algorithm) &nbsp; · &nbsp; [CS 스터디](https://github.com/Headfish96/CS-Study)
+**[교육·실습 지원 포트폴리오 →](https://headfish96.github.io/Headfish96/)** · [문서로 보기](docs/teaching.md) &nbsp; · &nbsp; [기술 블로그](https://coder-angrybird.tistory.com/) &nbsp; · &nbsp; [알고리즘 학습](https://github.com/Headfish96/Algorithm) &nbsp; · &nbsp; [CS 스터디](https://github.com/Headfish96/CS-Study)
 
 ## 만들고, 설명하고, 함께 해결합니다
 
@@ -40,7 +40,7 @@
 
 ### 02 · Billage — API 제약을 서비스 설계로 풀기
 
-<a href="https://github.com/Headfish96/Billage"><img src="assets/billage-flow.svg" width="100%" alt="Billage 서비스와 모의 오픈뱅킹·은행·마이데이터 연결 구조를 단순화한 그림" /></a>
+<a href="https://github.com/Headfish96/Billage"><img src="assets/billage-flow.svg" width="100%" alt="Billage의 모의 금융 서비스 구성요소 요약" /></a>
 
 차용증 생성부터 송금·상환 내역 관리까지 연결한 개인 간 금전거래 서비스.
 
