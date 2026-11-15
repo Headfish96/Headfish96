@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="230" viewBox="0 0 1200 230" role="img" aria-labelledby="t d">
+<title id="t">Billage 서비스 구성요소</title><desc id="d">Billage와 함께 구현한 모의 오픈뱅킹, 은행, 마이데이터 서비스의 구성요소 요약</desc>
+<rect x="1" y="1" width="1198" height="228" rx="14" fill="#edf6f1" stroke="#d3e6d9"/>
+<g font-family="Arial, Apple SD Gothic Neo, Malgun Gothic, sans-serif">
+<text x="34" y="39" font-size="13" letter-spacing="2" fill="#466f60">BILLAGE / SERVICE COMPONENTS</text>
+<rect x="34" y="74" width="223" height="88" rx="11" fill="#133f38"/><text x="145" y="110" text-anchor="middle" font-size="25" fill="#fff" font-weight="700">Billage</text><text x="145" y="139" text-anchor="middle" font-size="15" fill="#b5dbca">계약 · 거래 내역</text>
+<g font-size="27" fill="#619080" text-anchor="middle"><text x="296" y="128">+</text><text x="608" y="128">+</text><text x="912" y="128">+</text></g>
+<rect x="334" y="74" width="228" height="88" rx="11" fill="#fff" stroke="#a6cbb9"/><text x="448" y="110" text-anchor="middle" font-size="21" fill="#214b40">모의 오픈뱅킹</text><text x="448" y="139" text-anchor="middle" font-size="15" fill="#547464">API 요청·응답</text>
+<rect x="654" y="74" width="230" height="88" rx="11" fill="#fff" stroke="#a6cbb9"/><text x="769" y="110" text-anchor="middle" font-size="21" fill="#214b40">모의 은행 서비스</text><text x="769" y="139" text-anchor="middle" font-size="15" fill="#547464">서비스별 책임 분리</text>
+<rect x="940" y="74" width="226" height="88" rx="11" fill="#fff" stroke="#a6cbb9"/><text x="1053" y="110" text-anchor="middle" font-size="21" fill="#214b40">모의 마이데이터</text><text x="1053" y="139" text-anchor="middle" font-size="15" fill="#547464">데이터 조회·연계</text>
+<text x="34" y="202" fill="#547464" font-size="14">외부 금융 API 제약에 대응한 팀 프로젝트 · 모의 구현 구성요소 요약</text></g></svg>

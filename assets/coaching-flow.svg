@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="190" viewBox="0 0 1200 190" role="img" aria-labelledby="t d">
+<title id="t">실습 지원 접근</title><desc id="d">문제와 환경 확인, 원인 좁히기, 함께 수정하고 재확인하는 세 단계</desc>
+<rect x="1" y="1" width="1198" height="188" rx="14" fill="#f4f7fb" stroke="#d9e3ef"/>
+<g font-family="Arial, Apple SD Gothic Neo, Malgun Gothic, sans-serif">
+<text x="34" y="45" fill="#41617c" font-size="13" letter-spacing="2">HOW I APPROACH PRACTICE SUPPORT</text>
+<text x="34" y="97" font-size="19" fill="#2a5fd4">01</text><text x="76" y="97" font-size="23" font-weight="700" fill="#162d48">문제와 환경 확인</text><text x="76" y="134" font-size="16" fill="#5c6e80">목표 · 화면 · 오류 메시지</text>
+<path d="M368 110H405m-9-7 9 7-9 7" fill="none" stroke="#8ca4b8" stroke-width="2"/>
+<text x="446" y="97" font-size="19" fill="#2a5fd4">02</text><text x="488" y="97" font-size="23" font-weight="700" fill="#162d48">원인 좁히기</text><text x="488" y="134" font-size="16" fill="#5c6e80">설정 · 입력 · 작은 단위 재현</text>
+<path d="M762 110H799m-9-7 9 7-9 7" fill="none" stroke="#8ca4b8" stroke-width="2"/>
+<text x="836" y="97" font-size="19" fill="#2a5fd4">03</text><text x="878" y="97" font-size="23" font-weight="700" fill="#162d48">함께 수정·재확인</text><text x="878" y="134" font-size="16" fill="#5c6e80">이유 설명 · 직접 실행</text></g></svg>

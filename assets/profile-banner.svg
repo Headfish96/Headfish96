@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="390" viewBox="0 0 1440 390" role="img" aria-labelledby="title desc">
+<title id="title">Headfish96 — Software, Infrastructure and Coaching</title>
+<desc id="desc">Dark navy banner with a diagram connecting software development, infrastructure, and project coaching.</desc>
+<defs><pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#a9bfdb" stroke-opacity=".07"/></pattern></defs>
+<rect width="1440" height="390" rx="18" fill="#11253f"/><rect width="1440" height="390" rx="18" fill="url(#grid)"/>
+<g font-family="Arial, sans-serif"><text x="64" y="70" fill="#93c8bb" font-size="15" letter-spacing="4">BUILD. EXPLAIN. SUPPORT.</text>
+<text x="60" y="165" fill="#fff" font-weight="700" font-size="76" letter-spacing="-3">Headfish96</text>
+<text x="64" y="216" fill="#b9c9df" font-size="23">Software Engineer / Project Coach</text>
+<rect x="64" y="271" width="145" height="42" rx="21" fill="#c7f3e4"/><text x="136" y="298" text-anchor="middle" fill="#123a35" font-size="16" font-weight="700">Infrastructure</text>
+<rect x="222" y="271" width="118" height="42" rx="21" fill="#213b5d"/><text x="281" y="298" text-anchor="middle" fill="#e3ecfa" font-size="16">Backend</text>
+<rect x="353" y="271" width="130" height="42" rx="21" fill="#213b5d"/><text x="418" y="298" text-anchor="middle" fill="#e3ecfa" font-size="16">Applied AI</text>
+<path d="M1000 100V192H870M1000 192H1260M1000 192V290" stroke="#659a9d" stroke-width="2" fill="none"/>
+<rect x="910" y="51" width="185" height="66" rx="12" fill="#203b59" stroke="#45647f"/><text x="1002" y="92" text-anchor="middle" fill="#eaf1ff" font-size="20">Build</text>
+<rect x="805" y="164" width="185" height="66" rx="12" fill="#203b59" stroke="#45647f"/><text x="897" y="205" text-anchor="middle" fill="#eaf1ff" font-size="20">Explain</text>
+<rect x="1110" y="164" width="240" height="66" rx="12" fill="#c7f3e4"/><text x="1230" y="205" text-anchor="middle" fill="#123a35" font-size="20" font-weight="700">Solve together</text>
+<rect x="910" y="275" width="185" height="66" rx="12" fill="#203b59" stroke="#45647f"/><text x="1002" y="316" text-anchor="middle" fill="#eaf1ff" font-size="20">Keep learning</text>
+<circle cx="1000" cy="192" r="7" fill="#c7f3e4"/></g></svg>

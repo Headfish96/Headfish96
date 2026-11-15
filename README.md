@@ -1,78 +1,109 @@
-# Defense Software Engineer
+<p align="center">
+  <img src="assets/profile-banner.svg" width="100%" alt="Headfish96 — Software, Infrastructure and Coaching" />
+</p>
 
-Infrastructure · Backend · AI Platforms
+# 직접 만들고, 함께 풀어가는 개발자
 
-필요한 기술이 낯설어도 배우고 직접 적용하며, 서버 운영과 소프트웨어 개발을 함께 경험해 왔습니다.
-프로그램이 실행되는 환경부터 실제 서비스의 동작까지 이해하는 엔지니어로 성장하고 있습니다.
+**Defense Software Engineer · Infrastructure · Backend · Applied AI**
 
-## 대표 프로젝트
+서버를 운영하고 서비스를 개발해 온 경험에, 교육생의 프로젝트를 함께 고민한 실습코치 경험을 더했습니다.
+새로운 기술을 직접 적용하고, 문제의 원인과 해결 과정을 설명하는 일을 중요하게 생각합니다.
 
-| 프로젝트 | 해결한 문제와 경험 | 자료 |
-| --- | --- | --- |
-| Kubernetes 모델 세트 전환 연구 | 세트 전환 아키텍처 설계와 순차·병렬 배포 프로토타입 비교. 기존 코드와 결과, 계측의 한계를 함께 공개 | [코드·원본 결과](https://github.com/Headfish96/tsdo-simulation) |
-| 퀀트 백테스트 연구 | 리밸런싱 전략, 신호·체결 시점, 비용, 현금흐름을 고려한 Python 기반 전략 비교 연구 | [연구 소개](projects/quant-research.md) |
-| Billage | 금융 API 제약을 은행·오픈뱅킹·마이데이터 모의 구현으로 해결한 금전거래 서비스 | [저장소](https://github.com/Headfish96/Billage) |
-| PiYou | OnDevice-AI 기반 아동 생활습관 개선 앱. SSAFY 프로젝트 경진대회 전국 1등 | [서버 저장소](https://github.com/Headfish96/PiYou) |
-| CodeHive | 실시간 양방향 알고리즘 스터디 웹 플랫폼. SSAFY 공통 프로젝트 우수상 | [저장소](https://github.com/Headfish96/CodeHive) |
-| Flightstick Tester | Python 기반 조이스틱 입력 테스트 도구 | [저장소](https://github.com/Headfish96/velocityone-flightstick-tester) |
+- **현재** · LIG Defense & Aerospace C4I연구소 재직 중 (2025–현재)
+- **교육** · 멀티캠퍼스 SSAFY 프로젝트 실습코치 (2023.12–2024.05)
+- **성과** · PiYou, SSAFY 9기 자율 프로젝트 전국 1등 / CodeHive, 공통 프로젝트 우수상
+- **AI 활용** · ChatGPT·Codex와 협업해 MDS를 개발 중이며, Claude Code 사용 경험이 있습니다.
 
-## Infrastructure & Research
+**[교육·실습 지원 포트폴리오 →](docs/teaching.md)** &nbsp; · &nbsp; [기술 블로그](https://coder-angrybird.tistory.com/) &nbsp; · &nbsp; [알고리즘 학습](https://github.com/Headfish96/Algorithm) &nbsp; · &nbsp; [CS 스터디](https://github.com/Headfish96/CS-Study)
 
-### Kubernetes 모델 세트 전환
+## 만들고, 설명하고, 함께 해결합니다
 
-여러 모델을 개별적으로 다루는 것을 넘어 상황에 맞는 세트로 전환하는 구조를 연구했습니다.
-기존 Python·kubectl 실험과 10회씩의 측정 결과를 아카이브로 정리했습니다.
+<img src="assets/coaching-flow.svg" width="100%" alt="문제와 환경 확인 → 원인 좁히기 → 함께 수정하고 재확인하는 실습 지원 접근" />
 
-- **논문:** 전술 임무 단계 이종 AI 모델 세트의 오케스트레이션을 위한 쿠버네티스 커스텀 컨트롤러 설계
-- **발표:** 한국통신학회 2026년 하계학술대회
-- [논문 원문](https://d2j16w31g89z0j.cloudfront.net/site/2026s/abs/0721-ZUPVY.pdf)
+**프로젝트 실습코치**로 교육생의 프로젝트 품질 향상을 지원·지도했습니다.
+백엔드·인프라·AI 적용 프로젝트와 팀 발표를 경험했고, 현재는 소프트웨어 개발과 서버 환경 구축 경험을 이어가고 있습니다.
+교육 현장에서는 수강생의 화면과 오류를 함께 확인하고, 다음 단계를 스스로 진행할 수 있도록 설명하는 방식으로 기여하고자 합니다.
 
-공개 코드는 제안 아키텍처 전체의 커스텀 컨트롤러가 아닌 배포 실험 프로토타입입니다.
-실제 AI 모델·KEDA·Argo의 통합 성능을 검증한 것으로 표현하지 않으며, 재집계 방법과 구현의 한계는 저장소에 구분해 기록했습니다.
+## Selected work
 
-### 서버 구축과 운영
+### 01 · PiYou — OnDevice AI를 생활 속 서비스로
 
-Ubuntu 설치·업데이트와 NVIDIA 드라이버 관리, Kubernetes 클러스터 구성,
-Prometheus·Grafana 모니터링, IPMI 원격 관리 환경을 직접 구성했습니다.
-물리 서버 유지보수 경험에 소프트웨어 개발 경험을 더해, 서버를 사용하는 개발자의 관점도 함께 이해하고 있습니다.
-회사 내부 코드와 비공개 시스템 구성은 공개하지 않습니다.
+<a href="https://github.com/Headfish96/PiYou"><img src="docs/assets/piyou.webp" width="420" alt="PiYou의 실제 모바일 앱 화면" /></a>
 
-## Backend & Applied AI
+아동의 식사·양치 습관 개선을 돕는 팀 프로젝트. **SSAFY 9기 자율 프로젝트 전국 1등.**
 
-### Billage
+- **개인 역할:** 팀장, 기획·발표, 백엔드·AI
+- **개발 경험:** MediaPipe·Unity 적용, Convex Hull을 활용한 손동작 인식 보완, 사용자 상태 정기 갱신과 JDBC 배치 설정 활용
+- **설명할 수 있는 내용:** AI 결과를 서비스 동작에 연결하는 흐름, 낯선 도구의 적용 과정, 백엔드와 앱 사이의 역할
 
-**개인 담당:** 기획·발표, 백엔드·인프라. 팀 프로젝트.
+[프로젝트·코드](https://github.com/Headfish96/PiYou) · [팀 소개 영상](https://youtu.be/uulgX3FKP8o)
 
-차용증 생성부터 송금·상환까지 이어지는 서비스를 개발했습니다.
-외부 금융 API 이용 제약에 대응하여 금융 시스템을 모의 구현하고,
-MSA와 Spring WebClient·WebFlux 기반 통신을 통해 서비스 간 연결을 다뤘습니다.
+### 02 · Billage — API 제약을 서비스 설계로 풀기
 
-### PiYou
+<a href="https://github.com/Headfish96/Billage"><img src="assets/billage-flow.svg" width="100%" alt="Billage 서비스와 모의 오픈뱅킹·은행·마이데이터 연결 구조를 단순화한 그림" /></a>
 
-**개인 담당:** 기획·발표, 백엔드·AI. 팀 프로젝트.
+차용증 생성부터 송금·상환 내역 관리까지 연결한 개인 간 금전거래 서비스.
 
-아이의 식습관과 양치습관 개선을 돕기 위해 MediaPipe와 Unity를 적용했습니다.
-Graham Scan 기반 Convex Hull로 손동작 인식을 보완하고,
-사용자 상태 갱신에는 정기 실행과 JDBC 배치 처리를 적용했습니다.
-링크된 포크는 서버 저장소이며 앱·AI 코드 전체를 포함한다는 뜻은 아닙니다.
+- **개인 역할:** 팀장, 기획·발표, 백엔드·인프라
+- **개발 경험:** 외부 금융 API 이용 제약에 대응한 은행·오픈뱅킹·마이데이터 모의 구현, MSA, Spring WebClient·WebFlux 기반 서비스 통신
+- **설명할 수 있는 내용:** API 요청·응답 흐름, 서비스 사이의 책임 분리, 연동 오류의 확인 순서
+
+[프로젝트·코드](https://github.com/Headfish96/Billage) · [팀 소개 영상](https://youtu.be/DxseVqu3nDE)
+
+### 03 · CodeHive — 함께 배우는 환경 만들기
+
+<a href="https://github.com/Headfish96/CodeHive"><img src="docs/assets/codehive.webp" width="640" alt="CodeHive — 하나로 모아 편리함을 제공하는 알고리즘 스터디 플랫폼" /></a>
+
+실시간 양방향 코드 편집·채점을 제공하는 알고리즘 스터디 웹 플랫폼. **SSAFY 공통 프로젝트 우수상.**
+
+- **개인 역할:** 기획·발표, 백엔드
+- **팀 서비스:** 스터디 생성·일정 관리, 실시간 공유 편집, 코드 채점, 음성통화·자료 공유
+- **교육과의 연결:** 학습자가 함께 코드를 읽고 문제를 해결하는 환경을 개발한 경험
+
+[프로젝트·코드](https://github.com/Headfish96/CodeHive) · [팀 소개 영상](https://youtu.be/EHhbgAoXq_k)
+
+## Infrastructure & research
+
+| 작업 | 경험과 자료 |
+| --- | --- |
+| Kubernetes 모델 세트 전환 연구 | 세트 전환 아키텍처 설계와 순차·병렬 배포 프로토타입 비교. [코드·원본 결과](https://github.com/Headfish96/tsdo-simulation) |
+| 서버 구축·운영 | Ubuntu·NVIDIA 드라이버, Kubernetes, Prometheus·Grafana, IPMI 원격 관리 환경 구성 |
+| Python 데이터 분석 연구 | pandas·NumPy를 활용한 백테스트, 비용·실행 시점·현금흐름을 고려한 결과 비교. [연구 소개](projects/quant-research.md) |
+| Flightstick Tester | Python 기반 조이스틱 입력 테스트 도구. [코드](https://github.com/Headfish96/velocityone-flightstick-tester) |
+
+**발표 논문:** 「전술 임무 단계 이종 AI 모델 세트의 오케스트레이션을 위한 쿠버네티스 커스텀 컨트롤러 설계」 · 한국통신학회 2026년 하계학술대회 · [원문](https://d2j16w31g89z0j.cloudfront.net/site/2026s/abs/0721-ZUPVY.pdf)
+
+공개 실험 코드는 Python·kubectl 기반 배포 프로토타입입니다. 제안 아키텍처 전체나 실제 AI 모델·KEDA·Argo의 통합 성능을 검증한 구현은 아니며, 실험 조건과 계측 한계는 저장소에 기록했습니다.
 
 ## Experience
 
-| 소속 | 경험 |
+| 기간 | 소속·역할 | 경험 |
+| --- | --- | --- |
+| 2025–현재 | **LIG Defense & Aerospace · C4I연구소** | 제어 SW 개발·유지보수, 서버 환경 구축 및 플랫폼 아키텍처 검토 참여 |
+| 2024.07 입사 | **AWS · Data Center Operations** | 물리 서버 장애 상태 확인 및 장비 교체 |
+| 2023.12–2024.05 | **멀티캠퍼스 · SSAFY 프로젝트 실습코치** | 교육생 프로젝트 품질 향상 지원·지도 |
+| 2020–2022 | **대한민국 육군 · 통신장교** | 서버 운영, 장애 대응 조율, 저장장치 증설·로그 정책 개선 추진 |
+
+## Tools I have used
+
+| 분야 | 기술·도구 |
 | --- | --- |
-| LIG D&A · C4I연구소 | 제어 SW 개발·유지보수, 서버 환경 구축 및 플랫폼 아키텍처 검토 참여 |
-| AWS · Data Center Operations | 물리 서버 장애 상태 확인 및 장비 교체 |
-| 멀티캠퍼스 · SSAFY 실습코치 | 2023.12–2024.05, 프리랜서. 교육생 프로젝트 품질 향상 지원·지도 |
-| 육군 통신장교 | 서버 운영 관리, 장애 대응 조율 및 저장장치 증설·로그 정책 개선 추진 |
+| Backend | Java · Spring Boot · JPA · MySQL · Spring WebClient |
+| Infrastructure | Linux / Ubuntu · Docker · Kubernetes · Prometheus · Grafana · IPMI |
+| Applied AI & data | Python · pandas · NumPy · MediaPipe · Unity / C# |
+| AI-assisted development | ChatGPT · Codex · Claude Code |
+| Systems | VxWorks 기반 제어 SW 유지보수·시험평가 |
 
-## 기술 경험
+<details>
+<summary>AI 도구 사용 경험의 범위</summary>
 
-- **Infrastructure:** Linux/Ubuntu, Kubernetes, Docker, Prometheus, Grafana, IPMI
-- **Development:** Python, Java, Spring, JPA, MySQL, C#, Unity, MediaPipe
-- **Systems:** VxWorks 기반 제어 소프트웨어 유지보수·시험평가
+ChatGPT·Codex와 협업해 **MDS(Multimodal Data Sender)**를 개발하고 있습니다.
+시나리오 편집과 여러 종류의 데이터 송신을 지원하는 도구로, 요구사항을 정리하고 AI의 구현 결과를 확인·수정하며 개발을 진행합니다.
+Claude Code도 사용해 봤습니다.
+로컬 GPU 환경에 EXAONE과 하네스를 설치·적용한 경험은 Codex의 지원을 받아 진행했으며, 관련 동작과 구성은 학습을 이어가고 있습니다.
 
-기술 목록은 실제 사용 경험을 뜻하며, 모든 항목의 숙련도가 동일하다는 의미는 아닙니다.
+</details>
 
-[기술 블로그](https://coder-angrybird.tistory.com/) · [알고리즘 학습](https://github.com/Headfish96/Algorithm) · [CS 스터디](https://github.com/Headfish96/CS-Study)
+---
 
-팀 프로젝트의 링크는 포크를 포함합니다. 원본 저장소·공동 작업자의 기여와 개인 담당 역할을 구분합니다.
+프로젝트는 팀 작업이며 링크에는 포크 저장소가 포함됩니다. 서비스 전체 기능과 개인 담당 역할을 구분해 소개했습니다.
