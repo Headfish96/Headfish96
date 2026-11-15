@@ -26,6 +26,18 @@
 
 ## Selected work
 
+### MDS — AI와 협업해 개발 중인 데이터 송신 도구
+
+**Multimodal Data Sender**는 영상·음성·이미지 등의 데이터를 시간축에 배치하고, 시나리오로 편집·저장·송신하는 도구입니다.
+
+- **개발 방식:** 요구사항과 동작을 구체화하고 ChatGPT·Codex의 구현 결과를 확인하며 개선
+- **주요 기능:** 시나리오 편집·저장, 미리보기, 입력·시간 구간 사전 검사, 송신과 실행 기록 확인
+- **교육과의 연결:** AI에게 작업을 설명하고, 결과를 확인하며 다음 수정으로 이어가는 개발 과정
+
+미리보기·실제 송신·수신 결과 확인은 서로 다른 단계로 구분합니다. 여기에는 일반적인 기능만 소개합니다.
+
+[프로젝트 소개](https://headfish96.github.io/Headfish96/#mds)
+
 ### 01 · PiYou — OnDevice AI를 생활 속 서비스로
 
 <a href="https://github.com/Headfish96/PiYou"><img src="docs/assets/piyou.webp" width="420" alt="PiYou의 실제 모바일 앱 화면" /></a>
@@ -62,18 +74,51 @@
 
 [프로젝트·코드](https://github.com/Headfish96/CodeHive) · [팀 소개 영상](https://youtu.be/EHhbgAoXq_k)
 
+## More work · 도구와 데이터 시각화
+
+### Argus — 위성·항공기 공개 데이터 시각화
+
+공개된 궤도·위치 정보를 **3D 지구와 2D 지도**에서 탐색하는 웹 프로젝트입니다.
+TypeScript·Next.js·Three.js·MapLibre를 사용해 모드별 렌더러 전환, 위성 위치 계산, 궤도 데이터 요청·캐싱과 지도 표시를 구현했습니다.
+외부 데이터의 제공 상태에 영향을 받으며, 공개 소스에서 확인되는 구현 범위로 소개합니다.
+
+[프로젝트 소개](https://headfish96.github.io/Headfish96/#argus) · [코드](https://github.com/Headfish96/argus)
+
+### VelocityOne Flightstick Tester — 하드웨어 입력을 눈으로 확인하기
+
+<img src="docs/assets/flightstick.webp" width="720" alt="VelocityOne Tester 시뮬레이션 모드의 축·버튼 진단 화면" />
+
+조이스틱의 축·버튼 입력을 웹 UI에서 확인하는 Python 도구입니다.
+Linux 입력 이벤트·축 범위 정규화, macOS 입력 처리, FastAPI·WebSocket 상태 전달과 장치 미연결 시 시뮬레이션 전환을 구현했습니다.
+위 화면은 저장소의 **시뮬레이션 모드** 이미지입니다.
+
+[프로젝트 소개](https://headfish96.github.io/Headfish96/#flightstick) · [코드·실행 안내](https://github.com/Headfish96/velocityone-flightstick-tester)
+
+### maknae-order — 식사·카페 주문 정리
+
+여러 사람의 주문과 예산을 정리하는 작은 PWA입니다.
+JavaScript·Tesseract.js로 메뉴 사진 OCR, 식사 예산 계산, 카페 메뉴·주문 편집, 브라우저 로컬 저장을 구현했습니다.
+사진 선택 후 자동 인식, 큰 이미지 축소, 진행 상태·오류·시간 초과 안내로 사용 흐름을 개선했습니다.
+
+[프로젝트 소개](https://headfish96.github.io/Headfish96/#maknae) · [코드](https://github.com/Headfish96/maknae-order)
+
 ## Infrastructure & research
 
 | 작업 | 경험과 자료 |
 | --- | --- |
-| Kubernetes 모델 세트 전환 연구 | 세트 전환 아키텍처 설계와 순차·병렬 배포 프로토타입 비교. [코드·원본 결과](https://github.com/Headfish96/tsdo-simulation) |
+| Kubernetes 모델 세트 전환 연구 | 세트 전환 아키텍처 설계와 순차·병렬 배포 프로토타입 비교. [프로젝트 소개](https://headfish96.github.io/Headfish96/#model-transition) · [코드·원본 결과](https://github.com/Headfish96/tsdo-simulation) |
 | 서버 구축·운영 | Ubuntu·NVIDIA 드라이버, Kubernetes, Prometheus·Grafana, IPMI 원격 관리 환경 구성 |
 | Python 데이터 분석 연구 | pandas·NumPy를 활용한 백테스트, 비용·실행 시점·현금흐름을 고려한 결과 비교. [연구 소개](projects/quant-research.md) |
-| Flightstick Tester | Python 기반 조이스틱 입력 테스트 도구. [코드](https://github.com/Headfish96/velocityone-flightstick-tester) |
 
 **발표 논문:** 「전술 임무 단계 이종 AI 모델 세트의 오케스트레이션을 위한 쿠버네티스 커스텀 컨트롤러 설계」 · 한국통신학회 2026년 하계학술대회 · [원문](https://d2j16w31g89z0j.cloudfront.net/site/2026s/abs/0721-ZUPVY.pdf)
 
 공개 실험 코드는 Python·kubectl 기반 배포 프로토타입입니다. 제안 아키텍처 전체나 실제 AI 모델·KEDA·Argo의 통합 성능을 검증한 구현은 아니며, 실험 조건과 계측 한계는 저장소에 기록했습니다.
+
+## Learning archive
+
+[알고리즘 학습](https://github.com/Headfish96/Algorithm) · [온라인 저지 풀이](https://github.com/Headfish96/Online-Judge) · [CS 스터디](https://github.com/Headfish96/CS-Study) · [TIL](https://github.com/Headfish96/Today-I-Learn) · [Python 기초 실습](https://github.com/Headfish96/PY4E_Boostcourse)
+
+완성 프로젝트와 구분해 학습 과정의 기록으로 연결합니다.
 
 ## Experience
 
@@ -106,4 +151,4 @@ Claude Code도 사용해 봤습니다.
 
 ---
 
-프로젝트는 팀 작업이며 링크에는 포크 저장소가 포함됩니다. 서비스 전체 기능과 개인 담당 역할을 구분해 소개했습니다.
+팀 프로젝트는 서비스 전체 기능과 개인 담당 역할을 구분해 소개했습니다. 링크에는 포크 저장소가 포함됩니다.

@@ -31,6 +31,19 @@ ChatGPT·Codex와 협업하며 요구사항을 정리하고, 시나리오 편집
 
 ## 3. 대표 프로젝트
 
+### MDS · AI 협업 개발
+
+**Multimodal Data Sender**는 영상·음성·이미지 등을 하나의 시간축에서 시나리오로 편집하고 송신하는 도구입니다. ChatGPT·Codex와 협업해 개발 중입니다.
+
+- **해결할 문제:** 여러 데이터의 실행 순서와 시점을 편집하고 실행 전 오류·실행 후 상태를 확인
+- **주요 기능:** 시나리오 편집·저장, 데이터 미리보기, 입력·시간 구간 사전 검사, 송신과 실행 기록 확인
+- **개발 방식:** 요구사항과 동작을 구체화하고, AI의 구현 결과를 확인하며 오류와 사용 흐름을 개선
+- **교육과의 연결:** 작업 설명 → AI와 구현 → 결과 확인·수정으로 이어지는 개발 과정
+
+미리보기·실제 송신·수신 확인은 서로 다른 단계로 구분합니다. 일반적인 기능만 공개합니다.
+
+[웹 프로젝트 소개](https://headfish96.github.io/Headfish96/#mds)
+
 ### PiYou · AI 적용 서비스 개발
 
 ![PiYou 실제 앱 화면](assets/piyou.webp)
@@ -66,6 +79,46 @@ ChatGPT·Codex와 협업하며 요구사항을 정리하고, 시나리오 편집
 - **교육과의 연결:** 학습자가 함께 코드를 읽고 해결할 수 있는 환경을 개발한 경험
 
 [저장소](https://github.com/Headfish96/CodeHive) · [팀 소개 영상](https://youtu.be/EHhbgAoXq_k)
+
+### Argus · 공개 데이터 시각화
+
+위성 궤도·항공기 위치 공개 데이터를 3D 지구와 2D 지도에서 탐색하는 웹 프로젝트입니다.
+
+- **구현:** TypeScript·Next.js 기반 UI, Three.js·MapLibre 모드 전환, 위성 위치 계산, 데이터 요청·캐싱과 지도 정보 표시
+- **다룬 문제:** 여러 데이터 출처의 정보를 모으고, 서로 다른 렌더러를 모드별로 전환하는 구조
+- **확인 범위:** 공개 코드의 구현을 소개하며 실시간 데이터 이용은 외부 API 상태에 영향을 받음
+
+[프로젝트 소개](https://headfish96.github.io/Headfish96/#argus) · [코드](https://github.com/Headfish96/argus)
+
+### VelocityOne Flightstick Tester · 입력 장치 진단
+
+조이스틱의 축·버튼 입력과 연결 상태를 웹 화면에서 확인하는 Python 도구입니다.
+
+- **구현:** Linux 입력 이벤트 읽기·축 정규화, macOS 입력 처리, FastAPI·WebSocket 상태 전달, 미연결 시 시뮬레이션 전환
+- **다룬 문제:** OS별 하드웨어 입력 차이를 웹 UI의 공통 상태로 전달하는 과정
+- **자료:** 공개 코드와 저장소의 시뮬레이션 모드 화면. 장치별 성능 보장 수치는 제시하지 않음
+
+[프로젝트 소개](https://headfish96.github.io/Headfish96/#flightstick) · [코드·실행 안내](https://github.com/Headfish96/velocityone-flightstick-tester)
+
+### maknae-order · 생활 속 주문 정리
+
+식사·카페 주문과 인원별 예산을 정리하는 작은 PWA입니다.
+
+- **구현:** 메뉴 사진 OCR, 인원·예산 계산, 메뉴·주문 편집, 브라우저 로컬 저장
+- **사용 흐름 개선:** 사진 선택 후 자동 인식, 큰 이미지 축소, 진행 상태·오류·시간 초과 안내
+- **기술:** JavaScript·Tesseract.js·PWA. OCR 정확도나 시간 절감 효과는 별도 측정하지 않음
+
+[프로젝트 소개](https://headfish96.github.io/Headfish96/#maknae) · [코드](https://github.com/Headfish96/maknae-order)
+
+### Kubernetes 모델 세트 전환 · 공동 연구
+
+임무 단계에 따른 모델 세트 전환 아키텍처를 연구하고, Python·kubectl로 순차 배포와 세트 단위 적용·병렬 대기를 비교한 프로토타입을 공개했습니다.
+
+- **공개 자료:** 원본 실험 코드·설정·결과, 결과 재집계 도구와 검증 테스트
+- **구현 범위:** 모의 Deployment를 사용한 실험이며, 논문의 전체 커스텀 컨트롤러나 실제 AI 모델 통합 성능을 검증한 구현은 아님
+- **연구에서 다룬 점:** 설계·구현·관측 결과를 구분하고 실험 조건과 계측 한계를 기록
+
+[프로젝트 소개](https://headfish96.github.io/Headfish96/#model-transition) · [코드·원본 결과](https://github.com/Headfish96/tsdo-simulation)
 
 ## 4. 실습 지원 접근
 
