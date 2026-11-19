@@ -4,12 +4,13 @@
 
 # 직접 만들고, 함께 풀어가는 개발자
 
-**Defense Software Engineer · Infrastructure · Backend · Applied AI**
+**Defense Software Engineer · RTOS / VxWorks · Infrastructure · Backend · Applied AI**
 
-서버를 운영하고 서비스를 개발해 온 경험에, 교육생의 프로젝트를 함께 고민한 실습코치 경험을 더했습니다.
+VxWorks RTOS 기반 미사일 체계 소프트웨어와 통신 모의 프로그램 개발, 서버 운영·서비스 개발 경험에, 교육생의 프로젝트를 함께 고민한 실습코치 경험을 더했습니다.
 새로운 기술을 직접 적용하고, 문제의 원인과 해결 과정을 설명하는 일을 중요하게 생각합니다.
 
 - **현재** · LIG Defense & Aerospace C4I연구소 재직 중 (2025–현재)
+- **시스템 SW** · VxWorks RTOS 기반 미사일 체계 SW 개발·유지보수·시험평가
 - **교육** · 멀티캠퍼스 SSAFY 프로젝트 실습코치 (2023.12–2024.05)
 - **성과** · PiYou, SSAFY 9기 자율 프로젝트 전국 1등 / CodeHive, 공통 프로젝트 우수상
 - **AI 활용** · ChatGPT·Codex와 협업해 MDS를 개발 중이며, Claude Code 사용 경험이 있습니다.
@@ -25,6 +26,35 @@
 교육 현장에서는 수강생의 화면과 오류를 함께 확인하고, 다음 단계를 스스로 진행할 수 있도록 설명하는 방식으로 기여하고자 합니다.
 
 ## Selected work
+
+### RTOS / VxWorks — 미사일 체계 소프트웨어 개발
+
+**VxWorks 실시간 운영체제(RTOS)를 활용해 미사일 체계 소프트웨어를 개발**했으며, 제어 SW 유지보수·시험평가도 수행했습니다.
+임베디드 제어 콘솔 개발 과정에서는 사용자·관계자의 요구에 대응한 경험이 있습니다.
+
+- **담당 업무:** VxWorks RTOS 기반 미사일 체계 SW 개발, 제어 SW 유지보수·시험평가
+- **현장 경험:** 임베디드 제어 콘솔 개발 과정의 사용자·관계자 요구 대응
+- **경험의 연결:** 임베디드 시스템 실무를 바탕으로 소프트웨어 동작 확인과 기술 설명에 접근
+
+보안상 소스 코드는 공개하지 않으며, 개발 환경과 담당 업무를 중심으로 소개합니다.
+
+[실무 사례 소개](https://headfish96.github.io/Headfish96/#rtos)
+
+### RS232 통신 모의 프로그램 — 화면·통신·데이터를 함께 설계하기
+
+장비 연동 시험을 위한 **Python·PyQt 데스크톱 통신 모의 프로그램**을 개발했습니다.
+화면 구성부터 소프트웨어 구조를 설계하고, 시리얼 송수신·데이터 관리·통신 로그를 연결했습니다.
+**「RS232 통신 모의 프로그램」 저작권 등록.**
+
+- **담당 역할:** UX/UI 설계, MVVM 기반 구조 구성, 통신·데이터 처리 구현, 실행 로그를 통한 오류 분석
+- **설계:** View·ViewModel 분리, Dispatcher 기반 비동기 통신, Repository·DAO를 통한 SQLite 데이터 접근
+- **사용 흐름:** 통신 설정과 포트 제어, 데이터 입력·조회, 송수신 상태·로그 확인, 로그 창 분리·결합
+- **문제 분석:** 포트 핸들 오류와 ACK 처리·재전송 순서를 코드 및 실행 로그로 추적
+- **설명 경험:** 액티비티·시퀀스·클래스 다이어그램을 작성하고 설계 선택을 설명하는 발표 자료 준비
+
+내부 코드와 통신 규격은 공개하지 않습니다.
+
+[프로젝트 소개](https://headfish96.github.io/Headfish96/#serial-simulator)
 
 ### MDS — AI와 협업해 개발 중인 데이터 송신 도구
 
@@ -124,7 +154,7 @@ JavaScript·Tesseract.js로 메뉴 사진 OCR, 식사 예산 계산, 카페 메�
 
 | 기간 | 소속·역할 | 경험 |
 | --- | --- | --- |
-| 2025–현재 | **LIG Defense & Aerospace · C4I연구소** | 제어 SW 개발·유지보수, 서버 환경 구축 및 플랫폼 아키텍처 검토 참여 |
+| 2025–현재 | **LIG Defense & Aerospace · C4I연구소** | VxWorks RTOS 기반 미사일 체계 SW 개발·유지보수·시험평가, 서버 환경 구축 및 플랫폼 아키텍처 검토 참여 |
 | 2024.07 입사 | **AWS · Data Center Operations** | 물리 서버 장애 상태 확인 및 장비 교체 |
 | 2023.12–2024.05 | **멀티캠퍼스 · SSAFY 프로젝트 실습코치** | 교육생 프로젝트 품질 향상 지원·지도 |
 | 2020–2022 | **대한민국 육군 · 통신장교** | 서버 운영, 장애 대응 조율, 저장장치 증설·로그 정책 개선 추진 |
@@ -137,7 +167,8 @@ JavaScript·Tesseract.js로 메뉴 사진 OCR, 식사 예산 계산, 카페 메�
 | Infrastructure | Linux / Ubuntu · Docker · Kubernetes · Prometheus · Grafana · IPMI |
 | Applied AI & data | Python · pandas · NumPy · MediaPipe · Unity / C# |
 | AI-assisted development | ChatGPT · Codex · Claude Code |
-| Systems | VxWorks 기반 제어 SW 유지보수·시험평가 |
+| Systems | RTOS · VxWorks · 미사일 체계 SW 개발·유지보수·시험평가 |
+| Desktop & integration | Python · PyQt · pyserial · SQLite · MVVM · Repository / DAO |
 
 <details>
 <summary>AI 도구 사용 경험의 범위</summary>
