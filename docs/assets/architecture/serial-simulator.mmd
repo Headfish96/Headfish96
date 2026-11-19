@@ -1,0 +1,8 @@
+flowchart LR
+  ui["PyQt UI"] --> vm["ViewModel"]
+  vm --> dispatch["Dispatcher"]
+  dispatch --> serial["Serial I/O"]
+  vm --> repo["Repository / DAO"]
+  repo --> sqlite[("SQLite")]
+  serial --> log["Communication logs"]
+  log --> ui

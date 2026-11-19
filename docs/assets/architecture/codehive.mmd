@@ -1,0 +1,10 @@
+flowchart LR
+  web["React workspace"] <-->|"Shared editing"| yjs["Yjs WebSocket"]
+  web <-->|"REST / STOMP"| api["Spring Boot API"]
+  api --> sql[("MySQL")]
+  api --> redis[("Redis tokens")]
+  api --> mongo[("MongoDB chat")]
+  api --> run["Python / Java runners"]
+  api --> s3["S3 files"]
+  api --> ov["OpenVidu sessions"]
+  web <-->|"Voice"| ov

@@ -1,0 +1,1071 @@
+{
+  "projects": [
+    {
+      "id": "piyou",
+      "repo": "https://github.com/Headfish96/PiYou",
+      "commit": "1d89d7054d8c1999254e46023baa75f32747c003",
+      "summary": "아이·캐릭터·수집 데이터를 관리하는 Spring API와, 식사 상태를 주기적으로 갱신하고 알림을 발송하는 백엔드입니다. 화면 요청과 예약 작업이 같은 도메인 모델·저장소를 사용합니다.",
+      "decisions": [
+        {
+          "title": "요청 처리와 정기 갱신을 분리",
+          "description": "앱의 아이·도감 요청은 서비스 계층으로, 시간에 따라 변하는 식사 상태·알림은 SchedulerService로 분리했습니다. 두 경로는 같은 JPA 저장소를 사용합니다.",
+          "tradeoff": "시간 규칙을 한곳에서 읽기 쉬운 대신, 다중 인스턴스에서 작업 중복 실행을 막는 별도 조정은 공개 코드에서 확인되지 않습니다.",
+          "evidence": [
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/controller/SchedulerController.java",
+              "lines": "15-30",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/controller/SchedulerController.java#L15-L30"
+            },
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/SchedulerService.java",
+              "lines": "19-57",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/SchedulerService.java#L19-L57"
+            }
+          ]
+        },
+        {
+          "title": "여러 레코드 변경을 트랜잭션 단위로 묶기",
+          "description": "아이 생성 시 상태·초기 캐릭터·모자 수집 항목을 함께 만들고, 정기 갱신은 설정한 batch_size마다 flush한 뒤 마지막에 clear합니다.",
+          "tradeoff": "묶음 갱신의 의도는 코드에서 확인되지만 대상 전체를 List로 읽습니다. 청크 조회나 처리량 개선 수치는 검증하지 않았습니다.",
+          "evidence": [
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/ChildService.java",
+              "lines": "25-51",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/ChildService.java#L25-L51"
+            },
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/SchedulerService.java",
+              "lines": "25-57",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/SchedulerService.java#L25-L57"
+            }
+          ]
+        },
+        {
+          "title": "알림 시각과 실제 발송을 별도 모델로 다루기",
+          "description": "아이와 Notification을 ChildNoti로 연결하고, 분 단위 조회에서 선택한 대상의 토큰으로 FCM 메시지를 보냅니다.",
+          "tradeoff": "설정 조회와 발송을 설명하기 쉽지만, 현재 발송 코드는 동기 HTTP 호출입니다. 실패 재시도·중복 방지·현재 FCM API 호환성은 별도 확인이 필요합니다.",
+          "evidence": [
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/entity/ChildNoti.java",
+              "lines": "15-27",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/entity/ChildNoti.java#L15-L27"
+            },
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/repository/ChildNotiRepository.java",
+              "lines": "15-17",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/repository/ChildNotiRepository.java#L15-L17"
+            },
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/PushService.java",
+              "lines": "39-97",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/PushService.java#L39-L97"
+            }
+          ]
+        }
+      ],
+      "flow": [
+        {
+          "title": "아이 생성",
+          "description": "ChildController가 요청을 받아 ChildService로 전달하고, 상태와 기본 수집 항목을 저장한 뒤 응답 DTO를 반환합니다.",
+          "evidence": [
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/controller/ChildController.java",
+              "lines": "24-26",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/controller/ChildController.java#L24-L26"
+            },
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/ChildService.java",
+              "lines": "25-51",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/ChildService.java#L25-L51"
+            }
+          ]
+        },
+        {
+          "title": "활동 결과 반영",
+          "description": "아이 수정 요청에 경험치 값이 있으면 경험치를 합산하고 isMeal을 true로 바꾼 뒤 저장합니다.",
+          "evidence": [
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/ChildService.java",
+              "lines": "64-82",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/ChildService.java#L64-L82"
+            },
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/entity/Child.java",
+              "lines": "57-65",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/entity/Child.java#L57-L65"
+            }
+          ]
+        },
+        {
+          "title": "시간 경과 반영",
+          "description": "예약 작업이 미식사 아이의 경험치를 줄이고 별도 시각에 식사 여부를 초기화합니다. 변경은 JPA EntityManager로 flush합니다.",
+          "evidence": [
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/controller/SchedulerController.java",
+              "lines": "15-25",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/controller/SchedulerController.java#L15-L25"
+            },
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/SchedulerService.java",
+              "lines": "28-57",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/SchedulerService.java#L28-L57"
+            }
+          ]
+        },
+        {
+          "title": "알림 발송",
+          "description": "매분 알림 대상 조회 → 아이 토큰을 포함한 PushRequest 생성 → FCM HTTP POST 순서로 실행됩니다.",
+          "evidence": [
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/controller/SchedulerController.java",
+              "lines": "28-30",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/controller/SchedulerController.java#L28-L30"
+            },
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/SchedulerService.java",
+              "lines": "60-69",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/SchedulerService.java#L60-L69"
+            },
+            {
+              "path": "backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/PushService.java",
+              "lines": "39-78",
+              "url": "https://github.com/Headfish96/PiYou/blob/1d89d7054d8c1999254e46023baa75f32747c003/backend/spring-server/src/main/java/com/b106_402jeoung/PIYOU/service/PushService.java#L39-L78"
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "구조도는 공개 백엔드 코드 범위입니다. Unity 패키지 내부 구현은 저장소에 남아 있지 않아 포함하지 않았습니다.",
+        "SSAFY 전국 1등은 팀 수상입니다. 서버·DB·FCM 연동의 현재 실행 상태나 처리량을 재측정하지 않았습니다."
+      ],
+      "diagramTitle": "요청 처리와 예약 작업이 만나는 백엔드",
+      "teaser": "요청 처리 · 상태 갱신 · 알림 발송",
+      "alt": "Spring API와 예약 작업이 도메인 서비스·JPA 저장소를 공유하고 FCM으로 알림을 보냅니다.",
+      "caption": "팀 프로젝트의 공개 코드에서 확인한 핵심 구성입니다. 개인 담당 역할은 위에 따로 표시했습니다.",
+      "mermaid": "flowchart LR\n  api[\"Spring REST API\"] --> domain[\"Domain services\"]\n  domain --> repo[\"JPA repositories\"]\n  repo --> db[(\"MySQL\")]\n  clock[\"Scheduled tasks\"] --> batch[\"SchedulerService\"]\n  batch --> repo\n  batch --> push[\"PushService\"]\n  api --> push\n  push --> repo\n  push --> fcm[\"FCM API\"]"
+    },
+    {
+      "id": "billage",
+      "repo": "https://github.com/Headfish96/Billage",
+      "commit": "aa73bc02cc141cea3a43ba273bc5f2382b162de8",
+      "summary": "차용증·거래 내역을 관리하는 서비스와 은행·마이데이터·오픈뱅킹 모의 모듈을 함께 구성한 팀 프로젝트입니다. 계좌 조회는 WebClient로 중계하고, 별도 오픈뱅킹 모듈에는 출금 뒤 입금을 요청하는 순서가 구현되어 있습니다.",
+      "decisions": [
+        {
+          "title": "외부 금융 기능을 독립된 모의 서비스로 나누기",
+          "description": "본 서비스, 마이데이터, 오픈뱅킹, 은행 모듈을 나눠 API 제약이 있는 환경에서도 요청·응답 형태와 서비스 역할을 구현했습니다. 은행 MSA에는 Gateway/Eureka와 사용자·계좌·이체 모듈이 있습니다.",
+          "tradeoff": "서비스별 동작을 살펴보기 쉬워지지만 URL 설정·인증 전달·배포 단위가 늘어납니다. 공개 트리에는 KB 단일/분리 버전도 공존하므로 하나의 완성 배포 토폴로지로 단정하지 않습니다.",
+          "evidence": [
+            {
+              "path": "MyData/Back/mydata/src/main/java/com/fin/mydata/domain/log/service/LogService.java",
+              "lines": "33-100",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/MyData/Back/mydata/src/main/java/com/fin/mydata/domain/log/service/LogService.java#L33-L100"
+            },
+            {
+              "path": "IBK/Back/gateway-service/src/main/resources/application.yml",
+              "lines": "4-45",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/IBK/Back/gateway-service/src/main/resources/application.yml#L4-L45"
+            },
+            {
+              "path": "IBK/Back/discovery-service/src/main/java/com/fin/bank/discoveryservice/DiscoveryServiceApplication.java",
+              "lines": "7-12",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/IBK/Back/discovery-service/src/main/java/com/fin/bank/discoveryservice/DiscoveryServiceApplication.java#L7-L12"
+            }
+          ]
+        },
+        {
+          "title": "계좌 조회를 은행별로 요청하고 결과를 수집하기",
+          "description": "Billage의 searchBank는 은행 코드 목록을 Flux.flatMap으로 요청하고 MyData는 은행별 DTO 형태로 중계합니다.",
+          "tradeoff": "요청들을 조합하지만 끝에서 blockLast()/block()으로 기다립니다. 전체 서버를 비차단 구조로 구현했다고 표현하지 않으며 응답 지연·실패가 호출자에게 영향을 줄 수 있습니다.",
+          "evidence": [
+            {
+              "path": "Billage/Back/billage/src/main/java/com/fin/billage/domain/transfer/service/TransferService.java",
+              "lines": "46-96",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/Billage/Back/billage/src/main/java/com/fin/billage/domain/transfer/service/TransferService.java#L46-L96"
+            },
+            {
+              "path": "MyData/Back/mydata/src/main/java/com/fin/mydata/domain/log/service/LogService.java",
+              "lines": "55-100",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/MyData/Back/mydata/src/main/java/com/fin/mydata/domain/log/service/LogService.java#L55-L100"
+            }
+          ]
+        },
+        {
+          "title": "이체 단계를 출금→입금→기록 순서로 표현하기",
+          "description": "Openbank 모듈은 출금 성공을 확인한 뒤 입금을 요청하고, 두 응답이 성공일 때 거래를 저장합니다.",
+          "tradeoff": "단계별 성공 여부는 읽기 쉽지만 입금 실패 시 원복·멱등 처리까지 보장한 구조는 아닙니다. 본 서비스의 해당 HTTP 호출은 현재 주석 처리되어 있으므로 이 모듈 구현과 종단 통합을 구분합니다.",
+          "evidence": [
+            {
+              "path": "openbank/src/main/java/com/fin/openbank/domain/transfer/service/TransferService.java",
+              "lines": "22-60",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/openbank/src/main/java/com/fin/openbank/domain/transfer/service/TransferService.java#L22-L60"
+            },
+            {
+              "path": "Billage/Back/billage/src/main/java/com/fin/billage/domain/transfer/service/TransferService.java",
+              "lines": "164-218",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/Billage/Back/billage/src/main/java/com/fin/billage/domain/transfer/service/TransferService.java#L164-L218"
+            }
+          ]
+        }
+      ],
+      "flow": [
+        {
+          "title": "계약 만들기",
+          "description": "React API가 차용증 내용을 전송하면 ContractService가 채권자·채무자, 금액, 날짜와 계좌를 Contract로 저장하고 요청 알림을 남깁니다.",
+          "evidence": [
+            {
+              "path": "Billage/Front/billage/src/api/iou.tsx",
+              "lines": "6-15",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/Billage/Front/billage/src/api/iou.tsx#L6-L15"
+            },
+            {
+              "path": "Billage/Back/billage/src/main/java/com/fin/billage/domain/contract/service/ContractService.java",
+              "lines": "30-78",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/Billage/Back/billage/src/main/java/com/fin/billage/domain/contract/service/ContractService.java#L30-L78"
+            }
+          ]
+        },
+        {
+          "title": "계좌 목록 모으기",
+          "description": "사용자 정보와 선택 은행 코드를 만든 뒤 설정 저장소의 URL로 요청합니다. MyData는 요청 로그를 남기고 각 은행의 요청 형태에 맞춰 계좌 목록을 반환합니다.",
+          "evidence": [
+            {
+              "path": "Billage/Back/billage/src/main/java/com/fin/billage/domain/transfer/service/TransferService.java",
+              "lines": "46-96",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/Billage/Back/billage/src/main/java/com/fin/billage/domain/transfer/service/TransferService.java#L46-L96"
+            },
+            {
+              "path": "MyData/Back/mydata/src/main/java/com/fin/mydata/domain/log/service/LogService.java",
+              "lines": "33-105",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/MyData/Back/mydata/src/main/java/com/fin/mydata/domain/log/service/LogService.java#L33-L105"
+            }
+          ]
+        },
+        {
+          "title": "계약과 거래 연결하기",
+          "description": "현재 본 서비스의 transferCash는 거래를 Contract에 연결해 저장하고 상대방 알림을 만듭니다. 오픈뱅킹 HTTP 요청 코드는 주석으로 남아 있습니다.",
+          "evidence": [
+            {
+              "path": "Billage/Back/billage/src/main/java/com/fin/billage/domain/transfer/service/TransferService.java",
+              "lines": "100-136",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/Billage/Back/billage/src/main/java/com/fin/billage/domain/transfer/service/TransferService.java#L100-L136"
+            },
+            {
+              "path": "Billage/Back/billage/src/main/java/com/fin/billage/domain/transfer/service/TransferService.java",
+              "lines": "164-218",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/Billage/Back/billage/src/main/java/com/fin/billage/domain/transfer/service/TransferService.java#L164-L218"
+            }
+          ]
+        },
+        {
+          "title": "모의 이체 모듈 내부",
+          "description": "별도 Openbank API에 요청이 들어오면 출금 → 입금 → 거래 저장으로 진행합니다. 은행 서비스는 계좌 상태·잔액을 확인한 후 값을 갱신합니다.",
+          "evidence": [
+            {
+              "path": "openbank/src/main/java/com/fin/openbank/domain/transfer/service/TransferService.java",
+              "lines": "22-60",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/openbank/src/main/java/com/fin/openbank/domain/transfer/service/TransferService.java#L22-L60"
+            },
+            {
+              "path": "IBK/Back/account-service/src/main/java/com/fin/bank/accountservice/account/service/AccountService.java",
+              "lines": "71-115",
+              "url": "https://github.com/Headfish96/Billage/blob/aa73bc02cc141cea3a43ba273bc5f2382b162de8/IBK/Back/account-service/src/main/java/com/fin/bank/accountservice/account/service/AccountService.java#L71-L115"
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "은행·마이데이터·오픈뱅킹은 교육용 모의 서비스입니다.",
+        "점선은 현재 공개 코드에서 주석 처리된 이체 호출입니다. Openbank 모듈 구현과 본 서비스의 종단 연동을 구분했습니다.",
+        "실제 금융 거래, 분산 트랜잭션·멱등성 보장 및 통합 테스트 결과를 의미하지 않습니다."
+      ],
+      "diagramTitle": "모의 금융 API를 연결한 서비스 구조",
+      "teaser": "API 제약을 모의 서비스로 풀어낸 과정",
+      "alt": "Billage에서 MyData를 거쳐 모의 은행 API를 조회합니다. Openbank 이체 호출의 비활성 상태도 표시했습니다.",
+      "caption": "팀 프로젝트의 공개 코드에서 확인한 핵심 구성입니다. 개인 담당 역할은 위에 따로 표시했습니다.",
+      "mermaid": "flowchart LR\n  web[\"React app\"] --> app[\"Billage API\"]\n  app --> db[(\"Billage records\")]\n  app --> my[\"MyData mock API\"]\n  my --> kb[\"KB mock bank\"]\n  my --> gw[\"IBK Gateway / Eureka\"]\n  app -.->|\"Disabled call\"| ob[\"Openbank mock API\"]\n  ob --> kb\n  ob --> gw\n  gw --> services[\"Bank domain services\"]\n  services --> banks[(\"Bank records\")]\n  kb --> banks"
+    },
+    {
+      "id": "codehive",
+      "repo": "https://github.com/Headfish96/CodeHive",
+      "commit": "566a804c06289a0c932ab038e88f823ef9981b86",
+      "summary": "스터디 관리, 공동 코드·문서 편집, 채팅·음성, 코드 실행 결과 공유를 연결한 학습 플랫폼입니다. Yjs 편집 동기화와 Spring STOMP 메시지 전달을 분리하고, 서버가 언어별 실행 API로 요청을 전달합니다.",
+      "decisions": [
+        {
+          "title": "편집 동기화와 채팅·실행 메시지의 경로 분리",
+          "description": "코드·문서는 Yjs+CodeMirror/Quill로 동기화하고, 채팅·공지·코드 실행 결과는 Spring STOMP의 방별 채널로 전달합니다.",
+          "tradeoff": "역할에 맞는 도구를 쓰지만 Yjs와 STOMP의 연결 상태·방 식별자를 함께 관리해야 합니다. 동시 접속 수나 충돌 복구 성능은 공개 자료로 입증하지 않습니다.",
+          "evidence": [
+            {
+              "path": "FE/src/pages/AppIDE.jsx",
+              "lines": "81-151",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/FE/src/pages/AppIDE.jsx#L81-L151"
+            },
+            {
+              "path": "BE/src/main/java/com/spoon/sok/domain/socket/controller/SocketController.java",
+              "lines": "20-44",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/BE/src/main/java/com/spoon/sok/domain/socket/controller/SocketController.java#L20-L44"
+            },
+            {
+              "path": "BE/src/main/java/com/spoon/sok/config/WebSocketConfig.java",
+              "lines": "16-25",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/BE/src/main/java/com/spoon/sok/config/WebSocketConfig.java#L16-L25"
+            }
+          ]
+        },
+        {
+          "title": "언어별 실행기를 서비스 밖으로 분리",
+          "description": "Spring은 코드·입력·요청 ID를 만들어 Python/Java 실행 API로 전달하고, 받은 결과를 같은 스터디방에 방송합니다.",
+          "tradeoff": "실행 환경을 구분할 수 있지만 현재 호출은 RestTemplate 동기 요청입니다. 공개 실행기에는 시간 제한이 있으나 별도 보안 격리나 자동 정답 비교 채점은 확인되지 않습니다.",
+          "evidence": [
+            {
+              "path": "BE/src/main/java/com/spoon/sok/domain/socket/service/CodeExecuteService.java",
+              "lines": "21-42",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/BE/src/main/java/com/spoon/sok/domain/socket/service/CodeExecuteService.java#L21-L42"
+            },
+            {
+              "path": "BE/src/main/java/com/spoon/sok/domain/socket/controller/SocketController.java",
+              "lines": "36-40",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/BE/src/main/java/com/spoon/sok/domain/socket/controller/SocketController.java#L36-L40"
+            },
+            {
+              "path": "Compile/JAVA/src/main/java/com/java/compile/CompileService.java",
+              "lines": "69-115",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/Compile/JAVA/src/main/java/com/java/compile/CompileService.java#L69-L115"
+            },
+            {
+              "path": "Compile/PYTHON/Interpreter.py",
+              "lines": "16-45",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/Compile/PYTHON/Interpreter.py#L16-L45"
+            }
+          ]
+        },
+        {
+          "title": "데이터 성격에 맞춰 저장 위치 분리",
+          "description": "관계 데이터는 MySQL/JPA, 채팅은 MongoDB, 토큰은 TTL이 있는 Redis, 업로드 본문은 S3와 메타데이터 저장소로 나눴습니다.",
+          "tradeoff": "사용 목적이 분명하지만 구성할 저장소가 늘고, 자료 파일 업로드와 DB 메타데이터 변경의 실패 처리도 따로 관리해야 합니다.",
+          "evidence": [
+            {
+              "path": "BE/src/main/java/com/spoon/sok/domain/socket/service/ChatService.java",
+              "lines": "23-42",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/BE/src/main/java/com/spoon/sok/domain/socket/service/ChatService.java#L23-L42"
+            },
+            {
+              "path": "BE/src/main/java/com/spoon/sok/domain/user/service/UserService.java",
+              "lines": "74-77",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/BE/src/main/java/com/spoon/sok/domain/user/service/UserService.java#L74-L77"
+            },
+            {
+              "path": "BE/src/main/java/com/spoon/sok/domain/study/service/StudyFileUploadService.java",
+              "lines": "46-70",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/BE/src/main/java/com/spoon/sok/domain/study/service/StudyFileUploadService.java#L46-L70"
+            },
+            {
+              "path": "BE/src/main/java/com/spoon/sok/aws/S3Service.java",
+              "lines": "37-55",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/BE/src/main/java/com/spoon/sok/aws/S3Service.java#L37-L55"
+            }
+          ]
+        }
+      ],
+      "flow": [
+        {
+          "title": "스터디와 참여 관계 만들기",
+          "description": "StudyService가 스터디의 입장 이름을 생성하고 스터디 레코드와 생성자의 참여 관계를 저장합니다. 표지 이미지가 있으면 S3에 업로드합니다.",
+          "evidence": [
+            {
+              "path": "BE/src/main/java/com/spoon/sok/domain/study/service/StudyService.java",
+              "lines": "108-141",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/BE/src/main/java/com/spoon/sok/domain/study/service/StudyService.java#L108-L141"
+            }
+          ]
+        },
+        {
+          "title": "같은 코드를 함께 편집하기",
+          "description": "방 ID에 code/docx 접미사를 붙여 Yjs 문서를 구분하고, CodeMirror/Quill과 provider awareness를 연결합니다.",
+          "evidence": [
+            {
+              "path": "FE/src/pages/AppIDE.jsx",
+              "lines": "81-151",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/FE/src/pages/AppIDE.jsx#L81-L151"
+            }
+          ]
+        },
+        {
+          "title": "코드 실행 요청 보내기",
+          "description": "프런트가 코드·입력·언어·방 ID를 /pub/run으로 전송합니다. 서버는 요청 ID를 만들고 Python 또는 Java 실행 API를 호출합니다.",
+          "evidence": [
+            {
+              "path": "FE/src/components/IDE/IDETerminal.tsx",
+              "lines": "89-110",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/FE/src/components/IDE/IDETerminal.tsx#L89-L110"
+            },
+            {
+              "path": "BE/src/main/java/com/spoon/sok/domain/socket/service/CodeExecuteService.java",
+              "lines": "21-42",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/BE/src/main/java/com/spoon/sok/domain/socket/service/CodeExecuteService.java#L21-L42"
+            }
+          ]
+        },
+        {
+          "title": "실행 결과를 방 전체에 공유하기",
+          "description": "SocketController가 응답을 /sub/run/{roomId}로 전송하면 프런트는 성공·실패 상태와 출력을 터미널에 보여줍니다.",
+          "evidence": [
+            {
+              "path": "BE/src/main/java/com/spoon/sok/domain/socket/controller/SocketController.java",
+              "lines": "36-40",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/BE/src/main/java/com/spoon/sok/domain/socket/controller/SocketController.java#L36-L40"
+            },
+            {
+              "path": "FE/src/components/IDE/IDETerminal.tsx",
+              "lines": "113-142",
+              "url": "https://github.com/Headfish96/CodeHive/blob/566a804c06289a0c932ab038e88f823ef9981b86/FE/src/components/IDE/IDETerminal.tsx#L113-L142"
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "팀 전체 서비스 구조이며 개인 담당은 기획·발표·백엔드입니다.",
+        "공개 코드에서 확인되는 기능은 코드 실행·결과 공유입니다. 자동 정답 비교 채점, 실행기 보안 격리 및 부하 성능은 검증 범위에 포함하지 않았습니다.",
+        "외부 서비스의 현재 배포 상태와 통합 실행은 재검증하지 않았습니다."
+      ],
+      "diagramTitle": "공동 편집과 코드 실행의 서로 다른 경로",
+      "teaser": "공동 편집 · 실행기 분리 · 결과 공유",
+      "alt": "React 화면은 Yjs로 공동 편집하고 Spring STOMP로 메시지와 실행 결과를 공유합니다.",
+      "caption": "팀 프로젝트의 공개 코드에서 확인한 핵심 구성입니다. 개인 담당 역할은 위에 따로 표시했습니다.",
+      "mermaid": "flowchart LR\n  web[\"React workspace\"] <-->|\"Shared editing\"| yjs[\"Yjs WebSocket\"]\n  web <-->|\"REST / STOMP\"| api[\"Spring Boot API\"]\n  api --> sql[(\"MySQL\")]\n  api --> redis[(\"Redis tokens\")]\n  api --> mongo[(\"MongoDB chat\")]\n  api --> run[\"Python / Java runners\"]\n  api --> s3[\"S3 files\"]\n  api --> ov[\"OpenVidu sessions\"]\n  web <-->|\"Voice\"| ov"
+    },
+    {
+      "id": "argus",
+      "repo": "https://github.com/Headfish96/argus",
+      "commit": "bbc70a95a379fb197c29e260f48ede94e1e21ecd",
+      "summary": "공개 데이터 API를 Next.js 서버에서 중계하고, 브라우저의 3D 위성과 2D 항공기 렌더러를 모드별로 교체하는 대시보드입니다. TLE 캐시, 데이터 정규화, 화면 갱신 주기를 분리한 구조를 코드에서 확인했습니다.",
+      "decisions": [
+        {
+          "title": "3D와 2D 렌더러의 생명주기 분리",
+          "description": "App.tsx는 위성 모드에 GlobeScene, 항공기 모드에 MapScene 하나만 마운트합니다. 모드별 렌더러와 자원 해제를 분리할 수 있지만, 재진입 시 지도 초기화와 데이터 로딩이 다시 발생합니다. 장점·비용은 구현에서 해석한 내용이며 성능 벤치마크 결과는 아닙니다.",
+          "evidence": [
+            {
+              "path": "src/components/App.tsx",
+              "lines": "8-35",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/components/App.tsx#L8-L35"
+            },
+            {
+              "path": "src/components/map/MapScene.tsx",
+              "lines": "629-636",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/components/map/MapScene.tsx#L629-L636"
+            },
+            {
+              "path": "src/components/globe/GlobeScene.tsx",
+              "lines": "247-253",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/components/globe/GlobeScene.tsx#L247-L253"
+            }
+          ]
+        },
+        {
+          "title": "배치 조회와 TLE 실패 캐싱",
+          "description": "브라우저는 /api/tle를 한 번 호출하고 서버가 위성별 요청을 병렬 처리합니다. 일부 잘못된 응답도 1시간 캐싱해 반복 요청을 줄이는 구조입니다. 프로세스별 캐시이므로 재시작 시 사라지며, 일시적인 오류를 같은 시간 동안 유지할 수 있습니다.",
+          "evidence": [
+            {
+              "path": "src/hooks/useSatellites.ts",
+              "lines": "15-46",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/hooks/useSatellites.ts#L15-L46"
+            },
+            {
+              "path": "src/app/api/tle/route.ts",
+              "lines": "6-63",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/app/api/tle/route.ts#L6-L63"
+            },
+            {
+              "path": "src/app/api/tle/route.ts",
+              "lines": "88-102",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/app/api/tle/route.ts#L88-L102"
+            }
+          ]
+        },
+        {
+          "title": "수집과 화면 갱신의 주기 분리",
+          "description": "항공기 수집은 10초, 화면 위치 보간은 1초 주기이며 지도 이동은 1초 debounce 후 bbox에 반영합니다. 네트워크 호출 주기와 표시 주기를 분리하지만 보간 위치는 외부에서 관측한 실제 위치가 아니라 화면용 추정입니다.",
+          "evidence": [
+            {
+              "path": "src/hooks/useAircraft.ts",
+              "lines": "79-108",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/hooks/useAircraft.ts#L79-L108"
+            },
+            {
+              "path": "src/components/map/MapScene.tsx",
+              "lines": "607-626",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/components/map/MapScene.tsx#L607-L626"
+            },
+            {
+              "path": "src/components/map/MapScene.tsx",
+              "lines": "716-765",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/components/map/MapScene.tsx#L716-L765"
+            }
+          ]
+        }
+      ],
+      "flow": [
+        {
+          "title": "위성 모드 진입",
+          "description": "App이 GlobeScene을 마운트하고 useSatellites가 /api/tle 배치 응답을 요청합니다.",
+          "evidence": [
+            {
+              "path": "src/components/App.tsx",
+              "lines": "24-32",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/components/App.tsx#L24-L32"
+            },
+            {
+              "path": "src/hooks/useSatellites.ts",
+              "lines": "15-30",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/hooks/useSatellites.ts#L15-L30"
+            }
+          ]
+        },
+        {
+          "title": "외부 조회와 캐시",
+          "description": "서버는 NORAD ID별 메모리 캐시를 확인하고 필요한 TLE를 조회합니다. 결과를 ID별 JSON으로 반환합니다.",
+          "evidence": [
+            {
+              "path": "src/app/api/tle/route.ts",
+              "lines": "15-63",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/app/api/tle/route.ts#L15-L63"
+            },
+            {
+              "path": "src/app/api/tle/route.ts",
+              "lines": "88-102",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/app/api/tle/route.ts#L88-L102"
+            }
+          ]
+        },
+        {
+          "title": "좌표 계산과 UI 공유",
+          "description": "TLE를 SatRec으로 바꾼 뒤 매 프레임 좌표를 계산해 3D 객체를 움직이고, 위성 정보를 1초마다 Zustand에 반영합니다.",
+          "evidence": [
+            {
+              "path": "src/hooks/useSatellites.ts",
+              "lines": "23-41",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/hooks/useSatellites.ts#L23-L41"
+            },
+            {
+              "path": "src/components/globe/GlobeScene.tsx",
+              "lines": "308-355",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/components/globe/GlobeScene.tsx#L308-L355"
+            }
+          ]
+        },
+        {
+          "title": "항공기 모드 전환",
+          "description": "MapLibre 지도의 bbox에 맞춰 공개 항공기 데이터를 정규화해 저장하고, 지도와 선택 정보 패널을 갱신합니다.",
+          "evidence": [
+            {
+              "path": "src/hooks/useAircraft.ts",
+              "lines": "54-108",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/hooks/useAircraft.ts#L54-L108"
+            },
+            {
+              "path": "src/components/map/MapScene.tsx",
+              "lines": "607-626",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/components/map/MapScene.tsx#L607-L626"
+            },
+            {
+              "path": "src/components/map/MapScene.tsx",
+              "lines": "649-765",
+              "url": "https://github.com/Headfish96/argus/blob/bbc70a95a379fb197c29e260f48ede94e1e21ecd/src/components/map/MapScene.tsx#L649-L765"
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "외부 API의 제공 범위와 요청 제한에 의존합니다.",
+        "TLE 캐시는 서버 프로세스 메모리이며, 영속 데이터베이스나 공유 캐시는 구현되어 있지 않습니다.",
+        "항공기 보간은 화면용 추정이며 궤적 정확도·지연·렌더링 성능의 실측 근거는 없습니다.",
+        "별도 FastAPI·Redis·PostGIS·Jenkins·블루/그린 구성은 설계 문서에만 나타나므로 구현 아키텍처에 넣지 않았습니다."
+      ],
+      "diagramTitle": "수집·상태·렌더링을 나눈 데이터 흐름",
+      "teaser": "외부 데이터에서 3D·2D 화면까지",
+      "alt": "Next.js API가 공개 데이터를 중계하고 React hooks와 Zustand 상태를 통해 3D·2D 화면을 갱신합니다.",
+      "caption": "공개 코드에서 확인한 주요 모듈과 데이터 흐름을 재구성했습니다.",
+      "mermaid": "flowchart LR\n  A[\"CelesTrak TLE\"] --> C[\"Next.js API Routes\"]\n  B[\"Aircraft and overlay APIs\"] --> C\n  C <--> D[\"TLE memory cache\"]\n  C --> E[\"React data hooks\"]\n  E --> F[\"Zustand state\"]\n  E --> G[\"3D Globe and satellite.js\"]\n  F --> G\n  F --> H[\"2D MapLibre map\"]\n  I[\"App mode switch\"] --> G\n  I --> H"
+    },
+    {
+      "id": "flightstick",
+      "repo": "https://github.com/Headfish96/velocityone-flightstick-tester",
+      "commit": "733b3aacf7859f8cf39b68ed045dd31177ad919b",
+      "summary": "Linux 입력 이벤트와 macOS pygame 입력을 공통 상태로 변환하고, FastAPI WebSocket으로 브라우저 진단 화면에 전달합니다. 장치가 없으면 같은 상태 인터페이스에 시뮬레이션 데이터를 공급합니다.",
+      "decisions": [
+        {
+          "title": "운영체제 입력을 공통 상태로 변환",
+          "description": "Linux는 /dev/input 이벤트와 ioctl을 사용하고 macOS는 optional pygame을 사용합니다. 동일한 axes·buttons 상태로 변환해 웹 UI를 공유하지만 장치 매핑과 권한, 운영체제별 동작은 별도로 확인해야 합니다.",
+          "evidence": [
+            {
+              "path": "joystick_reader.py",
+              "lines": "207-289",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/joystick_reader.py#L207-L289"
+            },
+            {
+              "path": "joystick_reader.py",
+              "lines": "294-357",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/joystick_reader.py#L294-L357"
+            },
+            {
+              "path": "joystick_reader.py",
+              "lines": "448-458",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/joystick_reader.py#L448-L458"
+            }
+          ]
+        },
+        {
+          "title": "이벤트 수신과 화면 전송을 분리",
+          "description": "Linux 장치별 worker thread가 최신 값을 갱신하고 FastAPI는 각 클라이언트에 약 30Hz로 상태 snapshot을 보냅니다. UI는 단순해지지만 모든 이벤트를 손실 없이 기록하는 스트림은 아닙니다. last_event 하나와 브라우저의 최대 50개 로그로는 완전한 이벤트 이력을 보장하지 않습니다.",
+          "evidence": [
+            {
+              "path": "joystick_reader.py",
+              "lines": "227-289",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/joystick_reader.py#L227-L289"
+            },
+            {
+              "path": "main.py",
+              "lines": "44-61",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/main.py#L44-L61"
+            },
+            {
+              "path": "static/app.js",
+              "lines": "75-85",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/static/app.js#L75-L85"
+            },
+            {
+              "path": "static/app.js",
+              "lines": "191-201",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/static/app.js#L191-L201"
+            }
+          ]
+        },
+        {
+          "title": "하드웨어 없는 화면 확인 경로",
+          "description": "장치가 없으면 시뮬레이션을 생성하고 simulation_mode를 UI 배지로 표시합니다. 하드웨어 없이 상태 전달·화면 구성을 확인할 수 있지만 실제 장치의 정확도·연결 지연을 검증하는 테스트는 별도입니다.",
+          "evidence": [
+            {
+              "path": "joystick_reader.py",
+              "lines": "362-446",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/joystick_reader.py#L362-L446"
+            },
+            {
+              "path": "static/app.js",
+              "lines": "128-144",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/static/app.js#L128-L144"
+            }
+          ]
+        }
+      ],
+      "flow": [
+        {
+          "title": "애플리케이션 시작",
+          "description": "런처가 Uvicorn을 background thread로 시작하고 /api/status 확인 후 브라우저를 엽니다.",
+          "evidence": [
+            {
+              "path": "app_launcher.py",
+              "lines": "116-165",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/app_launcher.py#L116-L165"
+            }
+          ]
+        },
+        {
+          "title": "입력 취득",
+          "description": "Linux에서는 읽을 수 있는 event 노드별 스레드를 시작하고 원시 이벤트를 변환합니다. macOS에서는 pygame으로 장치 상태를 읽습니다.",
+          "evidence": [
+            {
+              "path": "joystick_reader.py",
+              "lines": "227-289",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/joystick_reader.py#L227-L289"
+            },
+            {
+              "path": "joystick_reader.py",
+              "lines": "294-357",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/joystick_reader.py#L294-L357"
+            },
+            {
+              "path": "joystick_reader.py",
+              "lines": "366-405",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/joystick_reader.py#L366-L405"
+            }
+          ]
+        },
+        {
+          "title": "공통 상태 전송",
+          "description": "get_state가 공통 JSON 상태를 제공하고 WebSocket endpoint가 현재 snapshot을 주기적으로 전송합니다.",
+          "evidence": [
+            {
+              "path": "joystick_reader.py",
+              "lines": "448-458",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/joystick_reader.py#L448-L458"
+            },
+            {
+              "path": "main.py",
+              "lines": "44-61",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/main.py#L44-L61"
+            }
+          ]
+        },
+        {
+          "title": "관측과 재연결",
+          "description": "프론트엔드가 연결/시뮬레이션 상태, 축·버튼·마지막 이벤트를 표시하고 소켓이 닫히면 재연결합니다.",
+          "evidence": [
+            {
+              "path": "static/app.js",
+              "lines": "128-233",
+              "url": "https://github.com/Headfish96/velocityone-flightstick-tester/blob/733b3aacf7859f8cf39b68ed045dd31177ad919b/static/app.js#L128-L233"
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "약 30Hz 상태 전달은 코드상의 주기이며 실측 지연이나 프레임률 보장 수치가 아닙니다.",
+        "Linux 입력 장치 읽기 권한과 macOS pygame 설치가 필요합니다.",
+        "last_event snapshot 구조로 모든 하드웨어 이벤트의 순서·유실 없는 기록을 보장하지 않습니다.",
+        "공개 저장소만으로 오프라인 의존성 패키지와 모든 운영체제/장치 조합의 동작은 확인할 수 없습니다."
+      ],
+      "diagramTitle": "장치 입력에서 브라우저 관측까지",
+      "teaser": "OS별 입력을 하나의 상태 인터페이스로",
+      "alt": "Linux와 macOS 입력 또는 시뮬레이션 데이터를 공통 상태로 바꿔 FastAPI WebSocket으로 전달합니다.",
+      "caption": "공개 코드에서 확인한 주요 모듈과 데이터 흐름을 재구성했습니다.",
+      "mermaid": "flowchart LR\n  A[\"USB Flightstick\"] --> B[\"Linux input reader and ioctl\"]\n  A --> C[\"macOS pygame adapter\"]\n  D[\"Device lifecycle loop\"] --> B\n  D --> C\n  D --> E[\"Simulation generator\"]\n  B --> F[\"JoystickReader state\"]\n  C --> F\n  E --> F\n  F --> G[\"FastAPI WebSocket\"]\n  G --> H[\"Browser canvas and event log\"]"
+    },
+    {
+      "id": "maknae",
+      "repo": "https://github.com/Headfish96/maknae-order",
+      "commit": "e2672c97ebacbef4a433cb34a60d81d0375b8984",
+      "summary": "브라우저 안에서 메뉴 사진을 축소하고 Tesseract.js OCR 결과를 사용자가 선택·수정한 주문으로 바꿉니다. 주문·예산 계산은 단일 JavaScript 상태에 모으고 localStorage와 service worker로 저장·재방문을 처리합니다.",
+      "decisions": [
+        {
+          "title": "브라우저 안에서 OCR과 주문 처리",
+          "description": "사진을 브라우저에서 축소한 후 Tesseract.js로 인식하고 주문 데이터를 localStorage에 저장합니다. 별도 앱 서버 없이 구성할 수 있지만 브라우저 저장 한도와 기기별 OCR 처리 비용을 고려해야 합니다.",
+          "evidence": [
+            {
+              "path": "app.js",
+              "lines": "20-33",
+              "url": "https://github.com/Headfish96/maknae-order/blob/e2672c97ebacbef4a433cb34a60d81d0375b8984/app.js#L20-L33"
+            },
+            {
+              "path": "app.js",
+              "lines": "95-145",
+              "url": "https://github.com/Headfish96/maknae-order/blob/e2672c97ebacbef4a433cb34a60d81d0375b8984/app.js#L95-L145"
+            },
+            {
+              "path": "app.js",
+              "lines": "184-194",
+              "url": "https://github.com/Headfish96/maknae-order/blob/e2672c97ebacbef4a433cb34a60d81d0375b8984/app.js#L184-L194"
+            }
+          ]
+        },
+        {
+          "title": "OCR 결과를 편집 가능한 후보로 제공",
+          "description": "인식된 줄과 가격 후보를 보여주고 사용자가 추가·수정하도록 구성했습니다. 자동 확정의 오류 영향을 줄일 수 있지만 최종 메뉴·가격은 사용자의 확인이 필요합니다.",
+          "evidence": [
+            {
+              "path": "app.js",
+              "lines": "223-261",
+              "url": "https://github.com/Headfish96/maknae-order/blob/e2672c97ebacbef4a433cb34a60d81d0375b8984/app.js#L223-L261"
+            },
+            {
+              "path": "app.js",
+              "lines": "283-335",
+              "url": "https://github.com/Headfish96/maknae-order/blob/e2672c97ebacbef4a433cb34a60d81d0375b8984/app.js#L283-L335"
+            }
+          ]
+        },
+        {
+          "title": "업데이트 우선 캐싱과 오프라인 재방문",
+          "description": "Service Worker가 앱 shell을 선캐싱하고 network-first로 요청합니다. 접속 시 새 버전을 받기 쉽지만 오프라인 OCR까지 보장하는 구조는 아닙니다. CDN·언어 리소스의 최초 로딩 상태에 영향을 받습니다.",
+          "evidence": [
+            {
+              "path": "sw.js",
+              "lines": "1-29",
+              "url": "https://github.com/Headfish96/maknae-order/blob/e2672c97ebacbef4a433cb34a60d81d0375b8984/sw.js#L1-L29"
+            },
+            {
+              "path": "index.html",
+              "lines": "167-173",
+              "url": "https://github.com/Headfish96/maknae-order/blob/e2672c97ebacbef4a433cb34a60d81d0375b8984/index.html#L167-L173"
+            },
+            {
+              "path": "app.js",
+              "lines": "147-176",
+              "url": "https://github.com/Headfish96/maknae-order/blob/e2672c97ebacbef4a433cb34a60d81d0375b8984/app.js#L147-L176"
+            }
+          ]
+        }
+      ],
+      "flow": [
+        {
+          "title": "사진 선택·축소",
+          "description": "이미지를 선택하면 FileReader와 Canvas로 최대 1600px JPEG를 만들고 저장 후 자동으로 OCR을 시작합니다.",
+          "evidence": [
+            {
+              "path": "app.js",
+              "lines": "95-145",
+              "url": "https://github.com/Headfish96/maknae-order/blob/e2672c97ebacbef4a433cb34a60d81d0375b8984/app.js#L95-L145"
+            }
+          ]
+        },
+        {
+          "title": "문자 인식·후보 생성",
+          "description": "kor+eng 인식을 수행하고 각 줄의 이름·가격 후보를 화면에 표시합니다. 진행·오류·시간 초과 메시지도 표시합니다.",
+          "evidence": [
+            {
+              "path": "app.js",
+              "lines": "171-261",
+              "url": "https://github.com/Headfish96/maknae-order/blob/e2672c97ebacbef4a433cb34a60d81d0375b8984/app.js#L171-L261"
+            }
+          ]
+        },
+        {
+          "title": "주문 확인·계산",
+          "description": "사용자가 후보를 추가하거나 직접 메뉴를 편집하면 저장과 예산 요약을 갱신합니다.",
+          "evidence": [
+            {
+              "path": "app.js",
+              "lines": "263-353",
+              "url": "https://github.com/Headfish96/maknae-order/blob/e2672c97ebacbef4a433cb34a60d81d0375b8984/app.js#L263-L353"
+            }
+          ]
+        },
+        {
+          "title": "재방문·주문 전달",
+          "description": "localStorage에서 상태를 복원하고, 카페 주문은 Clipboard API로 복사하며 실패 시 텍스트를 alert로 표시합니다.",
+          "evidence": [
+            {
+              "path": "app.js",
+              "lines": "20-33",
+              "url": "https://github.com/Headfish96/maknae-order/blob/e2672c97ebacbef4a433cb34a60d81d0375b8984/app.js#L20-L33"
+            },
+            {
+              "path": "app.js",
+              "lines": "421-449",
+              "url": "https://github.com/Headfish96/maknae-order/blob/e2672c97ebacbef4a433cb34a60d81d0375b8984/app.js#L421-L449"
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "메뉴 사진의 인식 결과와 가격은 사용자가 확인·수정해야 합니다.",
+        "localStorage는 브라우저·기기별로 분리되며 사진 저장량 한도에 영향을 받습니다.",
+        "OCR 엔진·언어 리소스 최초 로딩에는 네트워크가 필요할 수 있습니다.",
+        "시간 초과는 Promise.race로 안내하지만 진행 중 OCR worker를 명시적으로 중단하는 코드는 없습니다."
+      ],
+      "diagramTitle": "브라우저 안에서 끝나는 주문 처리",
+      "teaser": "메뉴 사진에서 편집 가능한 주문까지",
+      "alt": "메뉴 사진을 Canvas로 축소하고 OCR 후보를 주문 상태로 편집한 뒤 localStorage에 저장합니다.",
+      "caption": "공개 코드에서 확인한 주요 모듈과 데이터 흐름을 재구성했습니다.",
+      "mermaid": "flowchart LR\n  A[\"Menu photo\"] --> B[\"Canvas resize to 1600px\"]\n  B --> C[\"Tesseract.js OCR\"]\n  I[\"CDN and language resources\"] --> C\n  C --> D[\"Text lines and price parser\"]\n  D --> E[\"Editable order state\"]\n  E --> F[\"Budget and order UI\"]\n  F --> E\n  E <--> G[\"localStorage\"]\n  H[\"Service Worker cache\"] --> F"
+    },
+    {
+      "id": "model-transition",
+      "repo": "https://github.com/Headfish96/tsdo-simulation",
+      "commit": "38aa9bd127030538a274e24978b20a30500d0613",
+      "summary": "공동 연구의 배포 실험 아카이브입니다. Python과 kubectl로 순차 적용·대기와 세트 단위 적용·병렬 대기를 비교하고, 보존된 JSON 결과를 독립된 재집계 도구와 테스트로 확인하는 구조입니다.",
+      "decisions": [
+        {
+          "title": "배포 요청과 준비 대기를 비교 단위로 분리",
+          "description": "기준 방식은 Deployment별 적용·대기를 반복하고, 비교 방식은 세트 YAML 적용 뒤 Available을 병렬 대기합니다. 여러 준비 대기를 겹칠 수 있지만 다중 문서 apply는 원자적 트랜잭션이 아니며 두 스크립트의 처리 순서도 다릅니다.",
+          "evidence": [
+            {
+              "path": "legacy/scripts/baseline.py",
+              "lines": "163-188",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/legacy/scripts/baseline.py#L163-L188"
+            },
+            {
+              "path": "legacy/scripts/tsdo.py",
+              "lines": "46-65",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/legacy/scripts/tsdo.py#L46-L65"
+            },
+            {
+              "path": "legacy/scripts/tsdo.py",
+              "lines": "108-118",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/legacy/scripts/tsdo.py#L108-L118"
+            }
+          ]
+        },
+        {
+          "title": "실행 아카이브와 결과 재집계를 분리",
+          "description": "기존 측정 스크립트와 JSON은 legacy에 보존하고 analyze.py는 파일 읽기만 수행합니다. 클러스터를 조작하지 않고 수치를 검산할 수 있으나 기존 기록에 없는 실행 환경·이벤트 로그를 복구할 수는 없습니다.",
+          "evidence": [
+            {
+              "path": "tools/analyze.py",
+              "lines": "32-47",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/tools/analyze.py#L32-L47"
+            },
+            {
+              "path": "README.md",
+              "lines": "29-41",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/README.md#L29-L41"
+            }
+          ]
+        },
+        {
+          "title": "실패 복구 시도와 성공 검증을 구분",
+          "description": "비교 스크립트는 Available 대기 실패 시 새 세트 삭제와 이전 YAML 재적용을 시도합니다. 복구 완료를 기다리거나 실패를 주입하는 테스트는 없어 롤백 보장으로 소개할 수 없습니다.",
+          "evidence": [
+            {
+              "path": "legacy/scripts/tsdo.py",
+              "lines": "68-72",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/legacy/scripts/tsdo.py#L68-L72"
+            },
+            {
+              "path": "legacy/scripts/tsdo.py",
+              "lines": "120-134",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/legacy/scripts/tsdo.py#L120-L134"
+            },
+            {
+              "path": "README.md",
+              "lines": "64-79",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/README.md#L64-L79"
+            }
+          ]
+        }
+      ],
+      "flow": [
+        {
+          "title": "모의 workload 정의",
+          "description": "nginx Deployment 세트를 YAML로 정의하고 초기 세트가 Available 상태가 되도록 준비합니다.",
+          "evidence": [
+            {
+              "path": "legacy/yamls/isr-modelset.yaml",
+              "lines": "1-49",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/legacy/yamls/isr-modelset.yaml#L1-L49"
+            },
+            {
+              "path": "legacy/scripts/tsdo.py",
+              "lines": "85-99",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/legacy/scripts/tsdo.py#L85-L99"
+            }
+          ]
+        },
+        {
+          "title": "두 전환 절차 실행",
+          "description": "순차 적용·대기와 세트 단위 적용·병렬 대기를 별도 Python 스크립트로 실행하도록 구성했습니다.",
+          "evidence": [
+            {
+              "path": "legacy/scripts/baseline.py",
+              "lines": "157-194",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/legacy/scripts/baseline.py#L157-L194"
+            },
+            {
+              "path": "legacy/scripts/tsdo.py",
+              "lines": "101-146",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/legacy/scripts/tsdo.py#L101-L146"
+            }
+          ]
+        },
+        {
+          "title": "관측 결과 보존",
+          "description": "각 방식의 총 전환 시간과 부분 구간 관측값을 10회씩 JSON으로 기록했습니다.",
+          "evidence": [
+            {
+              "path": "legacy/scripts/baseline.py",
+              "lines": "215-222",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/legacy/scripts/baseline.py#L215-L222"
+            },
+            {
+              "path": "legacy/scripts/tsdo.py",
+              "lines": "171-178",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/legacy/scripts/tsdo.py#L171-L178"
+            }
+          ]
+        },
+        {
+          "title": "재집계와 범위 확인",
+          "description": "별도 분석 도구가 원본 JSON을 재집계하고 유효성·파일 해시를 확인합니다. 부분 구간 정의 차이도 명시합니다.",
+          "evidence": [
+            {
+              "path": "tools/analyze.py",
+              "lines": "12-47",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/tools/analyze.py#L12-L47"
+            },
+            {
+              "path": "tests/test_analysis.py",
+              "lines": "11-33",
+              "url": "https://github.com/Headfish96/tsdo-simulation/blob/38aa9bd127030538a274e24978b20a30500d0613/tests/test_analysis.py#L11-L33"
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "공동 연구의 프로토타입이며 논문에서 제안한 전체 custom controller 구현은 아닙니다.",
+        "실제 AI 모델 대신 nginx Deployment를 사용하며 무중단 전환·실제 모델 성능을 검증하지 않았습니다.",
+        "두 방식의 부분 전환 구간 정의가 달라 해당 지표의 감소율을 동일 조건 비교로 사용할 수 없습니다.",
+        "기존 JSON의 실행 환경·개별 이벤트 로그가 없고, 수렴도 그림은 실측 시계열이 아닌 도식입니다."
+      ],
+      "diagramTitle": "배포 실행과 결과 분석을 분리한 실험",
+      "teaser": "순차 대기와 병렬 대기를 비교한 연구",
+      "alt": "두 Python 절차가 kubectl로 nginx Deployment를 전환하고, JSON 관측 결과를 별도 도구가 재집계합니다.",
+      "caption": "공개 코드에서 확인한 주요 모듈과 데이터 흐름을 재구성했습니다.",
+      "mermaid": "flowchart LR\n  A[\"Deployment YAML sets\"] --> B[\"Sequential baseline.py\"]\n  A --> C[\"Parallel-wait tsdo.py\"]\n  B --> D[\"kubectl CLI\"]\n  C --> D\n  D --> E[\"Kubernetes nginx Deployments\"]\n  E --> D\n  D --> B\n  D --> C\n  B --> F[\"Archived JSON observations\"]\n  C --> F\n  F --> G[\"analyze.py summary and hashes\"]\n  H[\"Analysis unit tests\"] --> G"
+    },
+    {
+      "id": "serial-simulator",
+      "diagramTitle": "화면·통신·저장을 나눈 구성 개념도",
+      "teaser": "UI와 비동기 통신, 데이터 접근을 나눈 설계",
+      "alt": "PyQt 화면과 ViewModel이 통신 Dispatcher 및 Repository를 거쳐 시리얼 입출력과 SQLite에 연결되는 개념도입니다.",
+      "caption": "설계 설명과 일부 구현 기록을 바탕으로 정리한 개념 구성도입니다.",
+      "summary": "화면, 비동기 통신, 데이터 접근 책임을 나눠 설계한 데스크톱 도구입니다.",
+      "mermaid": "flowchart LR\n  ui[\"PyQt UI\"] --> vm[\"ViewModel\"]\n  vm --> dispatch[\"Dispatcher\"]\n  dispatch --> serial[\"Serial I/O\"]\n  vm --> repo[\"Repository / DAO\"]\n  repo --> sqlite[(\"SQLite\")]\n  serial --> log[\"Communication logs\"]\n  log --> ui",
+      "flow": [
+        {
+          "title": "화면에서 작업 입력",
+          "description": "PyQt 화면에서 통신과 데이터 작업을 입력하고 ViewModel을 통해 처리합니다."
+        },
+        {
+          "title": "통신과 저장의 책임 분리",
+          "description": "비동기 통신은 Dispatcher, 데이터 접근은 Repository/DAO 구조로 구분했습니다."
+        },
+        {
+          "title": "로그로 상태 확인",
+          "description": "송신·수신·재전송·ACK 기록을 확인하며 포트 핸들 오류와 중복 ACK를 분석했습니다."
+        }
+      ],
+      "decisions": [
+        {
+          "title": "UI와 처리 책임 분리",
+          "description": "MVVM과 계층 구조를 적용해 화면 동작과 통신·데이터 처리의 역할을 구분했습니다.",
+          "tradeoff": "컴포넌트 간 상태와 이벤트의 전달 규칙을 일관되게 유지해야 합니다."
+        },
+        {
+          "title": "통신 흐름을 관찰 가능한 기록으로 만들기",
+          "description": "송수신·ACK·재전송 로그와 분리·결합 가능한 로그 창을 구현했습니다.",
+          "tradeoff": "송수신과 재전송 기록을 함께 읽어야 포트 연결 문제와 응답 처리 문제를 구분할 수 있습니다."
+        }
+      ],
+      "limitations": [
+        "업무 산출물의 전체 소스, 내부 프로토콜·원시 로그·체계 세부 구성은 공개하지 않습니다.",
+        "저작권 등록된 프로그램이며, 이 페이지는 설계·구현 기여를 소개합니다."
+      ]
+    },
+    {
+      "id": "mds",
+      "diagramTitle": "시나리오를 편집하고 실행 결과를 확인하는 흐름",
+      "teaser": "편집·검증·실행을 잇는 시나리오 도구",
+      "alt": "시나리오를 편집하고 저장·검증한 뒤 미리보기 또는 송신을 수행하고 실행 로그를 확인하는 흐름입니다.",
+      "caption": "공개가 허용된 일반 기능 흐름입니다. 내부 SW 아키텍처·프로토콜·화면은 포함하지 않았습니다.",
+      "summary": "ChatGPT·Codex와 협업해 시나리오 편집·검증·송신 도구를 개발하고 있습니다.",
+      "mermaid": "flowchart LR\n  edit[\"Scenario editing\"] --> check[\"Save and validate\"]\n  check --> preview[\"Preview\"]\n  check --> send[\"Transmit\"]\n  preview --> logs[\"Inspect results\"]\n  send --> logs",
+      "flow": [
+        {
+          "title": "요구사항을 시나리오로 정리",
+          "description": "영상·음성·이미지 등 데이터를 시간 흐름에 맞춰 편집합니다."
+        },
+        {
+          "title": "저장하고 검증",
+          "description": "저장한 시나리오를 검증하고 미리보기로 내용을 확인합니다."
+        },
+        {
+          "title": "실행 결과 확인",
+          "description": "송신과 실행 로그를 살펴보고 필요한 수정으로 이어갑니다."
+        }
+      ],
+      "decisions": [],
+      "limitations": [
+        "일반 기능 흐름과 AI 협업 개발 과정을 소개합니다. 업무 관련 내부 프로토콜·코드·화면은 공개하지 않습니다."
+      ]
+    }
+  ]
+}

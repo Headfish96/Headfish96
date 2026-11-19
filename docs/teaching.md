@@ -61,19 +61,27 @@ UX/UI와 소프트웨어 구조를 설계하고, 시리얼 송수신·SQLite 데
 아동의 식사·양치 습관을 돕는 On-device AI 서비스입니다. **SSAFY 9기 자율 프로젝트 전국 1등**을 수상했습니다.
 
 - **역할:** 6인 팀의 팀장, 기획·발표, 백엔드·AI
-- **구현:** MediaPipe·Unity 적용, Convex Hull을 활용한 손동작 인식 보완, 사용자 상태 정기 갱신
-- **설명 주제:** AI 인식 결과를 앱 동작에 연결하는 과정과 기술 선택
+- **구현:** MediaPipe·Unity 적용, Convex Hull을 활용한 손동작 인식 보완, 사용자 상태 정기 갱신과 알림
+- **설명 주제:** AI 적용 경험과 함께, 공개 서버 코드의 API·저장소·예약 작업 역할 구분
 
 [프로젝트 상세](https://headfish96.github.io/Headfish96/projects/piyou.html) · [코드](https://github.com/Headfish96/PiYou) · [팀 소개 영상](https://youtu.be/uulgX3FKP8o)
 
 ### CodeHive · 알고리즘 스터디 플랫폼
 
-실시간 코드 공유 편집·채점, 스터디 일정 관리, 음성통화·자료 공유를 제공한 팀 프로젝트입니다. **SSAFY 공통 프로젝트 우수상**을 수상했습니다.
+공동 코드 편집·실행 결과 공유, 스터디 일정 관리, 음성통화·자료 공유를 제공한 팀 프로젝트입니다. **SSAFY 공통 프로젝트 우수상**을 수상했습니다.
 
 - **역할:** 6인 팀의 기획·발표, 백엔드
-- **설명 주제:** 학습자가 코드를 함께 읽고 문제를 해결하는 서비스의 구성
+- **설명 주제:** Yjs 편집 동기화, STOMP 메시지 전달, 코드 실행 API가 서로 연결되는 과정
 
 [코드](https://github.com/Headfish96/CodeHive) · [팀 소개 영상](https://youtu.be/EHhbgAoXq_k)
+
+### 구조도와 코드를 함께 읽는 자료
+
+- **[PiYou · 상태와 알림](https://headfish96.github.io/Headfish96/projects/piyou.html#architecture):** 요청을 받는 컨트롤러부터 서비스·저장소·예약 작업까지 따라갑니다. [코드 해설](../projects/architecture/piyou.md)
+- **[CodeHive · 공동 편집과 실행](https://headfish96.github.io/Headfish96/projects/codehive.html#architecture):** 편집 동기화와 실행 결과 전달이 서로 다른 경로라는 점을 살펴봅니다. [코드 해설](../projects/architecture/codehive.md)
+- **[Argus · 데이터와 지도](https://headfish96.github.io/Headfish96/projects/argus.html#architecture):** Next.js API의 중계·캐싱과 브라우저 렌더러의 역할을 나눠 읽습니다. [코드 해설](../projects/architecture/argus.md)
+
+구조도는 공개 코드에서 확인한 범위를 그렸습니다. 팀 프로젝트의 전체 기능과 개인 담당 역할을 함께 설명하는 자료로 활용합니다.
 
 ## 실습 지원 접근
 

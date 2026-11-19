@@ -1,0 +1,6 @@
+flowchart LR
+  edit["Scenario editing"] --> check["Save and validate"]
+  check --> preview["Preview"]
+  check --> send["Transmit"]
+  preview --> logs["Inspect results"]
+  send --> logs

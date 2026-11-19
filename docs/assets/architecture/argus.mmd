@@ -1,0 +1,11 @@
+flowchart LR
+  A["CelesTrak TLE"] --> C["Next.js API Routes"]
+  B["Aircraft and overlay APIs"] --> C
+  C <--> D["TLE memory cache"]
+  C --> E["React data hooks"]
+  E --> F["Zustand state"]
+  E --> G["3D Globe and satellite.js"]
+  F --> G
+  F --> H["2D MapLibre map"]
+  I["App mode switch"] --> G
+  I --> H

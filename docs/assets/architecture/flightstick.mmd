@@ -1,0 +1,11 @@
+flowchart LR
+  A["USB Flightstick"] --> B["Linux input reader and ioctl"]
+  A --> C["macOS pygame adapter"]
+  D["Device lifecycle loop"] --> B
+  D --> C
+  D --> E["Simulation generator"]
+  B --> F["JoystickReader state"]
+  C --> F
+  E --> F
+  F --> G["FastAPI WebSocket"]
+  G --> H["Browser canvas and event log"]

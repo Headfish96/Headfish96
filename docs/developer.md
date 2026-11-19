@@ -58,29 +58,49 @@ Python·PyQt를 사용해 통신 설정, 데이터 입력·조회, 송수신 로
 아동의 식사·양치 습관을 돕는 On-device AI 서비스입니다. **SSAFY 9기 자율 프로젝트 전국 1등**을 수상했습니다.
 
 - **팀·역할:** 6인 팀 / 팀장, 기획·발표, 백엔드·AI
-- **구현:** MediaPipe·Unity 적용, Convex Hull을 활용한 손동작 인식 보완, 사용자 상태 정기 갱신과 JDBC 배치 설정 활용
+- **구현:** MediaPipe·Unity 적용, Convex Hull을 활용한 손동작 인식 보완, JPA 기반 사용자 상태 관리와 예약 갱신·FCM 알림
 - **산출물:** 모바일 앱, 프로젝트 코드와 팀 소개 영상
 
 [프로젝트 상세](https://headfish96.github.io/Headfish96/projects/piyou.html) · [코드](https://github.com/Headfish96/PiYou) · [팀 소개 영상](https://youtu.be/uulgX3FKP8o)
 
+[서버 아키텍처](https://headfish96.github.io/Headfish96/projects/piyou.html#architecture)는 공개 Java 서버 코드에서 확인한 구조입니다. Unity·MediaPipe 내부 소스는 공개 저장소에 남아 있지 않아 그림의 범위에서 제외했습니다.
+
 ### 06. Billage · 개인 간 금전거래 관리
 
-차용증 생성과 송금·상환 내역 관리를 연결한 서비스입니다.
+차용증과 거래·상환 내역을 관리하고, 금융 연동을 모의 구현한 팀 서비스입니다.
 
 - **팀·역할:** 6인 팀 / 팀장, 기획·발표, 백엔드·인프라
-- **설계·구현:** 외부 금융 API 이용 제약에 대응한 은행·오픈뱅킹·마이데이터 모의 구현, MSA와 Spring WebClient·WebFlux 기반 서비스 통신
+- **설계·구현:** 은행·오픈뱅킹·마이데이터 모의 모듈, Gateway와 도메인 서비스 분리, WebClient·Flux 기반 계좌 조회 중계
 - **산출물:** 금전거래 관리 서비스, 모의 금융 연동 구조, 프로젝트 코드와 팀 소개 영상
 
 [프로젝트 상세](https://headfish96.github.io/Headfish96/projects/billage.html) · [코드](https://github.com/Headfish96/Billage) · [팀 소개 영상](https://youtu.be/DxseVqu3nDE)
+
+현재 공개 코드에서 본 서비스의 오픈뱅킹 이체 호출은 주석 처리되어 있습니다. [아키텍처](https://headfish96.github.io/Headfish96/projects/billage.html#architecture)는 이 경로를 점선으로 표시하고, 모의 이체 모듈 구현과 구분했습니다.
 
 ## 다른 프로젝트
 
 | 프로젝트 | 구현과 역할 | 자료 |
 | --- | --- | --- |
-| **CodeHive** | 6인 팀의 기획·발표·백엔드 담당. 실시간 코드 공유·채점 기반 알고리즘 스터디 플랫폼. SSAFY 공통 프로젝트 우수상 | [코드](https://github.com/Headfish96/CodeHive) · [영상](https://youtu.be/EHhbgAoXq_k) |
+| **CodeHive** | 6인 팀의 기획·발표·백엔드 담당. 공동 코드 편집·실행 결과 공유 기반 스터디 플랫폼. SSAFY 공통 프로젝트 우수상 | [코드](https://github.com/Headfish96/CodeHive) · [영상](https://youtu.be/EHhbgAoXq_k) |
 | **VelocityOne Flightstick Tester** | Linux·macOS 조이스틱 입력 처리, 축 정규화, FastAPI·WebSocket 상태 전달, 장치 미연결 시 시뮬레이션 전환 | [코드·실행 안내](https://github.com/Headfish96/velocityone-flightstick-tester) |
-| **Argus** | 위성·항공기 공개 데이터를 3D 지구·2D 지도로 시각화. 모드별 렌더러 전환, 위성 위치 계산, 궤도 데이터 조회·캐싱 | [코드](https://github.com/Headfish96/argus) |
+| **Argus** | Next.js API에서 공개 위성·항공기 데이터를 중계하고 TLE를 메모리에 캐싱. Three.js·MapLibre 렌더러 전환과 위치 표시 | [코드](https://github.com/Headfish96/argus) |
 | **maknae-order** | 메뉴 사진 OCR, 식사 예산 계산, 카페 메뉴·주문 편집과 브라우저 로컬 저장 | [코드](https://github.com/Headfish96/maknae-order) |
+
+## 코드로 읽는 아키텍처
+
+공개 소스의 진입점, 호출 관계, 데이터 저장 위치를 따라 구조를 정리했습니다. 각 해설에는 설계 선택, 동작 흐름과 해당 commit의 코드 링크가 있습니다.
+
+| 프로젝트 | 읽을 주제 | 코드 해설 |
+| --- | --- | --- |
+| PiYou | 요청 처리·정기 갱신·알림의 연결 | [JPA·스케줄러·FCM](../projects/architecture/piyou.md) |
+| Billage | 모의 금융 API와 서비스 경계 | [계좌 조회·이체 모듈](../projects/architecture/billage.md) |
+| CodeHive | 편집 동기화와 메시지 전달 분리 | [Yjs·STOMP·실행 API](../projects/architecture/codehive.md) |
+| Argus | 외부 데이터 중계와 렌더링의 역할 | [Next.js API·캐시·지도](../projects/architecture/argus.md) |
+| VelocityOne Tester | 운영체제 입력을 공통 상태로 변환 | [입력 처리·WebSocket](../projects/architecture/flightstick.md) |
+| maknae-order | OCR 후보를 편집 가능한 주문으로 변환 | [브라우저 처리·로컬 저장](../projects/architecture/maknae.md) |
+| 모델 세트 전환 연구 | 배포 적용과 준비 대기, 결과 재집계 | [Python·kubectl 실험](../projects/architecture/model-transition.md) |
+
+팀 구조와 개인 역할을 구분했으며, 정적 소스 조사로 확인한 내용을 소개합니다. 코드 실행·부하 측정 결과를 추가로 추정하지 않았습니다.
 
 ## 경력
 

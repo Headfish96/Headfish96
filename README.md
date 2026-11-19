@@ -1,49 +1,63 @@
 # Headfish96 · Software Engineer
 
-VxWorks 기반 실시간 제어 소프트웨어, 통신 시험 도구, 백엔드 서비스를 개발합니다.
+실시간 제어 소프트웨어부터 통신 시험 도구, 백엔드와 데이터 시각화까지 개발합니다.
 
 2025년부터 **LIG Defense & Aerospace C4I연구소**에서 근무하고 있습니다.
 
-**[개발자 포트폴리오 →](https://headfish96.github.io/Headfish96/developer.html)**
+**[개발자 포트폴리오 →](https://headfish96.github.io/Headfish96/developer.html)** · **[교육·실습 지원 →](https://headfish96.github.io/Headfish96/)**
 
-실무·프로젝트의 담당 역할, 구현 내용과 공개 자료
+구현한 기능, 담당 역할, 소프트웨어 구조를 프로젝트별로 정리했습니다.
 
-**[교육·실습 지원 포트폴리오 →](https://headfish96.github.io/Headfish96/)**
+## Systems & engineering
 
-SSAFY 프로젝트 실습코치 경력과 AI 활용·실습 지원 경험
-
-## Selected work
-
-| 작업 | 직접 한 일 | 자료 |
+| 작업 | 담당한 일 | 사례 |
 | --- | --- | --- |
-| **RTOS / VxWorks** | 미사일 체계 SW 개발, 제어 SW 유지보수·시험평가 | [실무 사례](https://headfish96.github.io/Headfish96/projects/rtos.html) |
-| **RS232 통신 모의 프로그램** | PyQt 화면·구조 설계, 시리얼 송수신·SQLite·통신 로그 구현. **저작권 등록** | [개발 사례](https://headfish96.github.io/Headfish96/projects/serial-simulator.html) |
-| **MDS** | 영상·음성·이미지의 시나리오 편집·송신 도구를 ChatGPT·Codex와 개발 중 | [개발 사례](https://headfish96.github.io/Headfish96/projects/mds.html) |
-| **PiYou** | 팀장, 기획·발표, 백엔드·AI. **SSAFY 9기 자율 프로젝트 전국 1등** | [코드](https://github.com/Headfish96/PiYou) · [개발 사례](https://headfish96.github.io/Headfish96/projects/piyou.html) |
+| **RTOS / VxWorks** | 미사일 체계 SW 개발, 제어 SW 유지보수·시험평가 | [실무 경험](https://headfish96.github.io/Headfish96/projects/rtos.html) |
+| **RS232 통신 모의 프로그램** | PyQt 화면·구조 설계, 시리얼 통신·SQLite·로그 구현과 오류 분석. **저작권 등록** | [설계와 개발](https://headfish96.github.io/Headfish96/projects/serial-simulator.html) |
+| **MDS** | 영상·음성·이미지의 시나리오 편집·송신 도구를 ChatGPT·Codex와 개발 중 | [개발 과정](https://headfish96.github.io/Headfish96/projects/mds.html) |
 
-<a href="https://headfish96.github.io/Headfish96/projects/piyou.html"><img src="docs/assets/piyou.webp" width="640" alt="PiYou — 아동의 식사와 양치 습관을 돕는 모바일 앱 화면" /></a>
+## Inside the code
 
-PiYou는 MediaPipe·Unity를 적용한 아동 생활습관 개선 서비스입니다. 6인 팀에서 팀장과 백엔드·AI 개발을 맡았습니다.
+공개 소스의 진입점부터 데이터 흐름·저장소·외부 연동까지 추적해 그린 아키텍처입니다. 상세 페이지에서 설계 선택과 해당 코드로 이어집니다.
 
-**다른 작업**
+<table>
+<tr>
+<td width="50%"><a href="https://headfish96.github.io/Headfish96/projects/piyou.html#architecture"><img src="docs/assets/architecture/piyou.svg" width="380" alt="PiYou 아키텍처: Spring API, JPA 저장소, 정기 상태 갱신과 FCM 알림" /></a></td>
+<td><strong>PiYou · 상태와 알림을 연결하는 백엔드</strong><br/><br/>아이·캐릭터 상태 관리, 예약 갱신, 푸시 알림.<br/>팀장 · 기획·발표 · 백엔드·AI<br/><strong>SSAFY 자율 프로젝트 전국 1등</strong><br/><br/><a href="https://headfish96.github.io/Headfish96/projects/piyou.html#architecture">구조와 설계 선택 →</a></td>
+</tr>
+<tr>
+<td><a href="https://headfish96.github.io/Headfish96/projects/codehive.html#architecture"><img src="docs/assets/architecture/codehive.svg" width="380" alt="CodeHive 아키텍처: Yjs 공동 편집, Spring STOMP와 언어별 코드 실행 API" /></a></td>
+<td><strong>CodeHive · 함께 편집하고 실행 결과를 공유하기</strong><br/><br/>Yjs 공동 편집과 STOMP 메시지 전달의 역할 분리.<br/>기획·발표 · 백엔드<br/><strong>SSAFY 공통 프로젝트 우수상</strong><br/><br/><a href="https://headfish96.github.io/Headfish96/projects/codehive.html#architecture">구조와 설계 선택 →</a></td>
+</tr>
+<tr>
+<td><a href="https://headfish96.github.io/Headfish96/projects/argus.html#architecture"><img src="docs/assets/architecture/argus.svg" width="380" alt="Argus 아키텍처: Next.js API 중계와 캐시, Three.js·MapLibre 데이터 시각화" /></a></td>
+<td><strong>Argus · 공개 데이터를 지도 위의 정보로</strong><br/><br/>Next.js API 중계·TLE 캐시, 위성 3D·항공기 2D 렌더링.<br/>프로젝트 개발 · 데이터 처리·지도 UI<br/><br/><a href="https://headfish96.github.io/Headfish96/projects/argus.html#architecture">구조와 설계 선택 →</a></td>
+</tr>
+</table>
 
-- [Billage](https://headfish96.github.io/Headfish96/projects/billage.html) — 모의 금융 API와 서비스 간 통신을 구성한 금전거래 관리 서비스
-- [CodeHive](https://github.com/Headfish96/CodeHive) — 실시간 코드 공유·채점 기반 알고리즘 스터디 플랫폼 · SSAFY 공통 프로젝트 우수상
-- [VelocityOne Tester](https://github.com/Headfish96/velocityone-flightstick-tester) — 조이스틱 입력 수집·정규화·웹 시각화
-- [Argus](https://github.com/Headfish96/argus) — 위성·항공기 공개 데이터의 3D·2D 시각화
-- [maknae-order](https://github.com/Headfish96/maknae-order) — 메뉴 사진 OCR과 식사·카페 주문 정리
+### Architecture notes
+
+| 프로젝트 | 코드에서 읽을 주제 | 자료 |
+| --- | --- | --- |
+| **PiYou** | JPA 상태 관리 · 예약 작업 · FCM 알림 | [구조도](https://headfish96.github.io/Headfish96/projects/piyou.html#architecture) · [코드 해설](projects/architecture/piyou.md) |
+| **Billage** | 모의 금융 API · 계좌 조회 중계 · 서비스 경계 | [구조도](https://headfish96.github.io/Headfish96/projects/billage.html#architecture) · [코드 해설](projects/architecture/billage.md) |
+| **CodeHive** | 공동 편집 · 방별 메시지 · 코드 실행 결과 공유 | [구조도](https://headfish96.github.io/Headfish96/projects/codehive.html#architecture) · [코드 해설](projects/architecture/codehive.md) |
+| **Argus** | Next.js API · 캐싱 · 3D/2D 렌더러 전환 | [구조도](https://headfish96.github.io/Headfish96/projects/argus.html#architecture) · [코드 해설](projects/architecture/argus.md) |
+| **VelocityOne Tester** | 운영체제별 입력 · 상태 정규화 · WebSocket | [구조도](https://headfish96.github.io/Headfish96/projects/flightstick.html#architecture) · [코드 해설](projects/architecture/flightstick.md) |
+| **maknae-order** | 브라우저 OCR · 주문 상태 · 로컬 저장 | [구조도](https://headfish96.github.io/Headfish96/projects/maknae.html#architecture) · [코드 해설](projects/architecture/maknae.md) |
+| **모델 세트 전환 연구** | kubectl 배포·준비 대기 · 원본 결과 재집계 | [구조도](https://headfish96.github.io/Headfish96/projects/model-transition.html#architecture) · [코드 해설](projects/architecture/model-transition.md) |
+
+팀 프로젝트의 구조도는 팀 전체 구현을 설명합니다. 개인 담당 역할과 공개 코드에서 확인한 범위를 각 사례에 함께 적었습니다.
 
 ## Infrastructure & research
 
 Ubuntu·NVIDIA 드라이버, Kubernetes, Prometheus·Grafana, IPMI 환경을 구성한 경험이 있습니다.
 
-**Kubernetes 모델 세트 전환 공동 연구**에서는 전환 아키텍처와 순차·병렬 배포 프로토타입을 비교했습니다. 모의 Deployment 기반 실험 코드와 원본 결과를 공개했습니다.
+**Kubernetes 모델 세트 전환 공동 연구**에서는 순차 적용·대기와 세트 단위 적용·병렬 대기 프로토타입을 비교했습니다. 모의 Deployment 기반 실험 코드와 원본 결과를 공개했습니다.
 
-[연구 사례](https://headfish96.github.io/Headfish96/projects/model-transition.html) · [코드·실험 기록](https://github.com/Headfish96/tsdo-simulation)
+[연구 사례](https://headfish96.github.io/Headfish96/projects/model-transition.html) · [코드·실험 기록](https://github.com/Headfish96/tsdo-simulation) · [발표 논문](https://d2j16w31g89z0j.cloudfront.net/site/2026s/abs/0721-ZUPVY.pdf)
 
-발표 논문: 「전술 임무 단계 이종 AI 모델 세트의 오케스트레이션을 위한 쿠버네티스 커스텀 컨트롤러 설계」
-
-한국통신학회 2026년 하계학술대회 · [논문](https://d2j16w31g89z0j.cloudfront.net/site/2026s/abs/0721-ZUPVY.pdf)
+한국통신학회 2026년 하계학술대회 · 「전술 임무 단계 이종 AI 모델 세트의 오케스트레이션을 위한 쿠버네티스 커스텀 컨트롤러 설계」
 
 ## Experience
 
@@ -59,9 +73,10 @@ Ubuntu·NVIDIA 드라이버, Kubernetes, Prometheus·Grafana, IPMI 환경을 구
 - **Systems & desktop:** RTOS · VxWorks · Python · PyQt · pyserial · SQLite
 - **Backend:** Java · Spring Boot · JPA · MySQL · Spring WebClient / WebFlux
 - **Infrastructure:** Linux / Ubuntu · Docker · Kubernetes · Prometheus · Grafana · IPMI
+- **Web & visualization:** TypeScript · Next.js · Three.js · MapLibre
 - **AI & data:** MediaPipe · Unity / C# · pandas · NumPy
 
-개발 과정에 **ChatGPT·Codex**를 활용하고, Claude Code도 사용했습니다. Codex와 함께 로컬 GPU 환경에 EXAONE과 하네스를 설치·적용한 경험이 있습니다.
+개발 과정에 **ChatGPT·Codex**를 활용하고 Claude Code도 사용했습니다. Codex와 함께 로컬 GPU에 EXAONE과 하네스를 설치·적용한 경험이 있습니다.
 
 ## Writing & learning
 
@@ -82,4 +97,4 @@ Ubuntu·NVIDIA 드라이버, Kubernetes, Prometheus·Grafana, IPMI 환경을 구
 
 [개발자 포트폴리오](https://headfish96.github.io/Headfish96/developer.html) · [교육·실습 지원](https://headfish96.github.io/Headfish96/)
 
-팀 프로젝트는 개인 담당 역할을 함께 기재했습니다. 저장소 링크에는 포크가 포함됩니다.
+저장소 링크에는 포크가 포함됩니다. 실무 프로젝트는 공개 가능한 일반 기능과 담당 업무를 소개합니다.

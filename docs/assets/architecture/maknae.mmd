@@ -1,0 +1,10 @@
+flowchart LR
+  A["Menu photo"] --> B["Canvas resize to 1600px"]
+  B --> C["Tesseract.js OCR"]
+  I["CDN and language resources"] --> C
+  C --> D["Text lines and price parser"]
+  D --> E["Editable order state"]
+  E --> F["Budget and order UI"]
+  F --> E
+  E <--> G["localStorage"]
+  H["Service Worker cache"] --> F

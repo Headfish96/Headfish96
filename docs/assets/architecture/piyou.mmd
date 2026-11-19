@@ -1,0 +1,10 @@
+flowchart LR
+  api["Spring REST API"] --> domain["Domain services"]
+  domain --> repo["JPA repositories"]
+  repo --> db[("MySQL")]
+  clock["Scheduled tasks"] --> batch["SchedulerService"]
+  batch --> repo
+  batch --> push["PushService"]
+  api --> push
+  push --> repo
+  push --> fcm["FCM API"]

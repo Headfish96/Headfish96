@@ -1,0 +1,12 @@
+flowchart LR
+  web["React app"] --> app["Billage API"]
+  app --> db[("Billage records")]
+  app --> my["MyData mock API"]
+  my --> kb["KB mock bank"]
+  my --> gw["IBK Gateway / Eureka"]
+  app -.->|"Disabled call"| ob["Openbank mock API"]
+  ob --> kb
+  ob --> gw
+  gw --> services["Bank domain services"]
+  services --> banks[("Bank records")]
+  kb --> banks

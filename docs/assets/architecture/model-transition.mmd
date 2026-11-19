@@ -1,0 +1,13 @@
+flowchart LR
+  A["Deployment YAML sets"] --> B["Sequential baseline.py"]
+  A --> C["Parallel-wait tsdo.py"]
+  B --> D["kubectl CLI"]
+  C --> D
+  D --> E["Kubernetes nginx Deployments"]
+  E --> D
+  D --> B
+  D --> C
+  B --> F["Archived JSON observations"]
+  C --> F
+  F --> G["analyze.py summary and hashes"]
+  H["Analysis unit tests"] --> G
